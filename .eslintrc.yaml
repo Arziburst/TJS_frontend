@@ -1,0 +1,23 @@
+---
+parser: babel-eslint
+
+parserOptions:
+    ecmaVersion: 2018
+    sourceType: module
+    ecmaFeatures:
+        impliedStrict: true
+        jsx: true
+    flowtype:
+        onlyFilesWithFlowAnnotation: false
+
+extends:
+  - '@lectrum/eslint-config-core'
+
+rules:
+    linebreak-style: 0
+    max-len: 0
+    no-alert: 0
+    indent: [ 2, 4, SwitchCase: 1 ]
+    arrow-spacing: [2, { before: true, after: true }]
+    key-spacing: [ 2, { beforeColon: false, afterColon: true, align: value } ]
+    comma-dangle: [ 2, { arrays: always-multiline, objects: always-multiline, functions: always-multiline, imports: always-multiline, exports: always-multiline }]

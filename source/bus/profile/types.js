@@ -1,0 +1,10 @@
+export default Object.freeze({
+    FILL_PROFILE:            'FILL_PROFILE',
+    LOGOUT:                  'LOGOUT',
+    INITIALIZE_ASYNC:        'INITIALIZE_ASYNC',
+    AUTHENTICATE_ASYNC:      'AUTHENTICATE_ASYNC',
+    REGISTRATION_ASYNC:      'REGISTRATION_ASYNC',
+    LOGIN_ASYNC:             'LOGIN_ASYNC',
+    LOGOUT_ASYNC:            'LOGOUT_ASYNC',
+    RESET_TO_INNITIAL_STATE: 'RESET_TO_INNITIAL_STATE',
+});

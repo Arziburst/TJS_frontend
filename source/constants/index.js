@@ -1,0 +1,10 @@
+export const productTypes = [ 'All', 'Brooch', 'Earrings', 'Bracelets', 'Necklace' ];
+export const PINK = '#eb5b78';
+export const RED = '#E74F4E';
+export const WHITE = '#ffffff';
+export const BLACK = '#292929';
+export const DEEP_BLACK = '#000000';
+export const GRAY = '#E5E5E5';
+export const DEEP_GRAY = '#3C3C3C';
+export const GREEN = '#4BB543';
+export const YELLOW = '#FFFD42';
