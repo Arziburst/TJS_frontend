@@ -161,7 +161,7 @@ export const optimizeFonts = () => ({
     ],
 });
 
-export const deleteMomemtLocalesPlugin = () => ({
+export const removeMomentLocalesPlugin = () => ({
     plugins: [
         new MomentLocalesPlugin({
             localesToKeep: [ 'en-gb', 'ru' ],

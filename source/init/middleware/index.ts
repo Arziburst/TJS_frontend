@@ -30,4 +30,4 @@ isDev && middlewares.push(
     }),
 );
 
-export { isDev, middlewares, sagaMiddleware, history };
+export { middlewares, sagaMiddleware, history };

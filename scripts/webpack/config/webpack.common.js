@@ -23,13 +23,16 @@ export default () => {
                 publicPath:       '/',
                 hashDigestLength: 5,
             },
+            resolve: {
+                extensions: [ '.tsx', '.ts', '.js', '.jsx' ],
+            },
         },
-        modules.loadJavaScript(),
+        modules.loadTypeScript(),
         modules.loadFonts(),
         modules.loadImages(),
         modules.loadSvg(),
         modules.connectHtml(),
-        modules.deleteMomemtLocalesPlugin(),
+        modules.removeMomentLocalesPlugin(),
         modules.provideGlobals(),
     );
 };

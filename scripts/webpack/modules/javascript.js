@@ -1,13 +1,29 @@
-export const loadJavaScript = () => ({
+// Core
+import { createTransformer } from 'typescript-plugin-styled-components';
+
+const styledComponentsTransformer = createTransformer();
+
+export const loadTypeScript = () => ({
     module: {
         rules: [
             {
-                test:    /\.js$/,
+                test:    /\.ts(x?)|.js$/,
                 exclude: /node_modules/,
                 use:     {
-                    loader: 'babel-loader',
+                    loader:  'awesome-typescript-loader',
+                    options: {
+                        getCustomTransformers: () => ({ before: [ styledComponentsTransformer ] }),
+                    },
                 },
+
+            },
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            {
+                enforce: 'pre',
+                test:    /\.js$/,
+                loader:  'source-map-loader',
             },
         ],
     },
 });
+

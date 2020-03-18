@@ -10,8 +10,10 @@ module.exports = api => {
     // api.cache.never();
 
     const plugins = [
+        '@babel/plugin-transform-runtime',
         '@babel/plugin-syntax-dynamic-import',
         '@babel/proposal-class-properties',
+        '@babel/plugin-syntax-async-generators',
         'babel-plugin-styled-components'
     ];
 
@@ -27,6 +29,8 @@ module.exports = api => {
     return {
         presets: [
             '@babel/react',
+            // TODO: resolve problem with transpiling from ts to ES5 + Reaact hot loader
+            // '@babel/typescript',
             [
                 '@babel/env',
                 {
@@ -34,7 +38,8 @@ module.exports = api => {
                     spec: true, // specification, делает код более медленным, но более надёжным
                     loose: false, // делает код более быстрым, но отходит от стандарта
                     modules: false, // webpack хорошо работает только с ES2015 модулями
-                    useBuiltIns: 'usage',
+                    // useBuiltIns: 'usage',
+                    // corejs: 3,
                 },
             ],
         ],

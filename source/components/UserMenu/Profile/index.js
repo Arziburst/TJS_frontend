@@ -1,7 +1,7 @@
 // Core
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 // Hooks
 import { useLogout } from '../../../bus/profile';
@@ -12,9 +12,9 @@ import S from './styles';
 // Svg
 import { appSvg } from '../../../assets';
 
-export const Profile = ({ name, email, phone, role }) => {
+export const Profile = ({ name }) => {
     const { logoutHandler, toggler } = useLogout();
-    const history = useHistory();
+    // const history = useHistory();
     const { t } = useTranslation();
 
     return (
