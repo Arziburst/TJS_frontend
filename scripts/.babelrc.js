@@ -10,7 +10,7 @@ module.exports = api => {
             [
                 '@babel/preset-env',
                 {
-                    useBuiltIns: 'usage',
+                    // useBuiltIns: 'usage',
                     shippedProposals: true,
                     spec: true,
                     loose: false,
