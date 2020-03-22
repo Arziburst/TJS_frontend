@@ -4,18 +4,6 @@ import styled from 'styled-components';
 
 // Styles
 const ButtonContainer = styled.button`
-    ${({ theme, styles }) => {
-        if (typeof styles === 'function') {
-            return styles(theme.name);
-        }
-
-        if (styles) {
-            return styles;
-        }
-
-        return theme.button;
-    }};
-
     box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
 
     &:hover {
@@ -38,6 +26,17 @@ const ButtonContainer = styled.button`
     border-radius: 12px;
 
     transition: transform 0.3s, box-shadow 0.3s;
+
+    ${({ theme }) => theme.button};
+    ${({ theme, styles }) => {
+        if (typeof styles === 'function') {
+            return styles(theme.name);
+        }
+
+        if (styles) {
+            return styles;
+        }
+    }};
 `;
 
 export const Button = ({

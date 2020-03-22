@@ -4,6 +4,7 @@ import merge from 'webpack-merge';
 // Pages Locales
 import { ProductPage } from '../../pages/ProductPage/locale';
 import { OrdersPage } from '../../pages/OrdersPage/locale';
+import { AboutUsPage } from '../../pages/AboutUsPage/locale';
 
 // Components Locales
 import { UserMenu } from '../../components/UserMenu/locale';
@@ -22,6 +23,7 @@ export const resources = merge(
     // Pages Locales
     ProductPage,
     OrdersPage,
+    AboutUsPage,
     // Components Locales
     UserMenu,
     Toolbar,

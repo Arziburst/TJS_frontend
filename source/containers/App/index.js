@@ -1,6 +1,6 @@
 // Core
-import React, { useMemo } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useState, useMemo } from 'react';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { Toolbar, Footer, CartModal, CartButton } from '../../components';
 
 // Pages
-import { MainPage, ProductPage, OrdersPage } from '../../pages';
+import { MainPage, ProductPage, OrdersPage, AboutUsPage } from '../../pages';
 
 // Hooks
 import { useInitialize } from '../../bus/profile';
@@ -24,13 +24,20 @@ import S from './styles';
 import G from '../../assets/globalStyles';
 
 const App = () => {
+    const history = useHistory();
     const { isInitialized } = useInitialize();
     const { isCartModalExist } = useCartModal();
-    const [ themeName, setThemeName ] = useLocalStorage('theme', 'darkTheme');
+    const [ themeName, setThemeName ] = useLocalStorage('theme', 'lightTheme');
+    const [ isWelcomeComplete ] = useLocalStorage('isWelcomeComplete', false);
+
     const { ordersLength, isAuthenticated } = useSelector(({ orders, togglers }) => ({
         ordersLength:    orders.length,
         isAuthenticated: togglers.isAuthenticated,
     }));
+
+    useState(() => {
+        !isWelcomeComplete && history.push('/about-us');
+    }, []);
 
     const theme = useMemo(() => themes[ themeName ], [ themeName ]);
 
@@ -65,6 +72,10 @@ const App = () => {
                                 )
                             }
                             <Route
+                                component = { AboutUsPage }
+                                path = '/about-us'
+                            />
+                            <Route
                                 component = { ProductPage }
                                 path = '/product/:hash'
                             />
@@ -75,7 +86,8 @@ const App = () => {
                         </Switch>
                         <Footer />
                     </S.AppContainer>
-                )}
+                )
+            }
         </ThemeProvider>
     );
 };

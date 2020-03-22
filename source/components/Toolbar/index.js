@@ -27,6 +27,7 @@ export const Toolbar = ({ setThemeName, themeName }) => {
                 <S.ContactData>
                     <a href = 'tel:+380668301029'>{t('Toolbar.phone')}: +38(066)830 10 29</a>
                     <a href = 'mailto:elena-arez@ukr.net'>{t('Toolbar.email')}: elena-arez@ukr.net</a>
+                    <Link to = { '/about-us' }>About us</Link>
                 </S.ContactData>
             </S.ToolbarCenter>
             <UserMenu

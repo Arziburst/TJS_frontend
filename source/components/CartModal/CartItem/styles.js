@@ -8,19 +8,26 @@ export default {
       border-radius: 10px;
       overflow: hidden;
       margin: 1px;
+      height: 100%;
+      max-height: 150px;
 
+      a {
+        display: block;
+      }
+      
       img {
         width: 100px;
         min-width: 85px;
         transition: transform 0.3s;
+        height: 100%;
+        transform: scale(1.1);
       }
 
-      
-        &:hover {
-          img {
-              transform: scale(1.5);
-          }
+      &:hover {
+        img {
+            transform: scale(1.5);
         }
+      }
   `,
 
     Price: styled.div`

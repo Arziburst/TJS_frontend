@@ -13,6 +13,9 @@ import { useProductsFilter } from '../../bus/ui';
 // Styles
 import S from './styles';
 
+// Constants
+const WEEK = 604800000;
+
 const MainPage = () => {
     const { t } = useTranslation();
     const { productsFilterState, setProductsFilterState } = useProductsFilter();
@@ -35,7 +38,14 @@ const MainPage = () => {
         const isProductViewed = viewedProducts.includes(product.hash);
 
         if (productsFilterState === 'All' || productsFilterState === product.type) {
-            return [ ...acc, { ...product, isProductInCart, isProductViewed }];
+            return [
+                ...acc,
+                {
+                    ...product,
+                    isProductInCart,
+                    isProductViewed,
+                },
+            ];
         }
 
         return acc;

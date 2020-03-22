@@ -25,6 +25,7 @@ export const ProductGalleryItem = memo(({
     price = 1000,
     views = 0,
     discount = 0,
+    isNew = false,
 }) => {
     const { t } = useTranslation();
     const result = discountHandler(price, discount);
@@ -62,6 +63,13 @@ export const ProductGalleryItem = memo(({
                     )
                 }
             </S.Hover>
+            {
+                isNew && (
+                    <S.New>
+                        {t('ProductGalleryItem.new')}!
+                    </S.New>
+                )
+            }
             {
                 discount > 0 && (
                     <S.DiscountContainer>
