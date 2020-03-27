@@ -3,20 +3,20 @@ import { toast } from 'react-toastify';
 
 // Actions
 import { orderActions } from '../../actions';
-import { cartActions } from '../../../cart/actions';
+import { clearCart } from '../../../cart/actions';
 
 // Api
 import { createOrderFetcher } from '../../../../api';
 
 // Instruments
-import { makeRequestWithSpinner } from '../../../../workers';
+import { makeRequest } from '../../../../helpers';
 
 export function* callCreateOrderWorker ({ payload }) {
-    const result = yield makeRequestWithSpinner({
+    const result = yield makeRequest({
         fetcher:           createOrderFetcher(payload),
         togglerType:       'isOrderFetching',
         fill:              orderActions.createOrderSync,
-        successSideEffect: cartActions.clearCart,
+        successSideEffect: clearCart,
     });
 
     if (result) {

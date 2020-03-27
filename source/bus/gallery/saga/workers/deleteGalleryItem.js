@@ -5,10 +5,10 @@ import { galleryActions } from '../../actions';
 import { deleteGalleryItemFetcher } from '../../../../api';
 
 // Instruments
-import { makeRequestWithSpinner } from '../../../../workers';
+import { makeRequest } from '../../../../helpers';
 
 export function* callDeleteGalleryItemWorker({ payload: public_id }) {
-    yield makeRequestWithSpinner({
+    yield makeRequest({
         fetcher:     () => deleteGalleryItemFetcher(public_id),
         togglerType: 'isGalleryUpdating',
         fill:        galleryActions.deleteGalleryItemSync,

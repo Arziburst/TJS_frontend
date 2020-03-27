@@ -35,4 +35,3 @@ export const resources = merge(
     ProductGallery,
     Footer,
 );
-

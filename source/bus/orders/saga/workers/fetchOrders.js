@@ -5,10 +5,10 @@ import { orderActions } from '../../actions';
 import { ordersFetcher } from '../../../../api';
 
 // Instruments
-import { makeRequestWithSpinner } from '../../../../workers';
+import { makeRequest } from '../../../../helpers';
 
 export function* callFetchOrdersWorker () {
-    yield makeRequestWithSpinner({
+    yield makeRequest({
         fetcher:     ordersFetcher,
         togglerType: 'isOrdersFetching',
         fill:        orderActions.fill,

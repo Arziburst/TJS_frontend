@@ -432,6 +432,5 @@ rules:
         - single
     babel/new-cap: 0
 
-        # TypeScript
-    # "@typescript-eslint/no-unused-vars-experimental": 2
+    # TypeScript
     "@typescript-eslint/no-unused-vars": 2

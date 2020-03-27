@@ -90,6 +90,7 @@ export const ProductModal = ({ headerTitle }) => {
     });
 
     const deleteProductHandler = () => {
+        // eslint-disable-next-line no-alert
         const isConfirmed = window.confirm(t('ProductModal.deleteConfirm'));
         if (isConfirmed) {
             deleteProductAsync(hashFromUrl);

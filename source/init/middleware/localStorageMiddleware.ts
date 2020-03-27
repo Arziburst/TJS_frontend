@@ -1,26 +1,37 @@
 // Core
-import { AnyAction } from 'redux';
 import localStorage from 'store';
+import { Middleware } from 'redux';
 
 // Types
-import cartTypes from '../../bus/cart/types';
-import uiTypes from '../../bus/ui/types';
+import { AppState } from '../rootReducer';
+import {
+    CART_ADD_PRODUCT,
+    CART_REMOVE_PRODUCT,
+    CART_CLEAR,
+    CartActionTypes,
+} from '../../bus/cart/types';
+import {
+    SET_VIEWED_PRODUCTS_STATE,
+    UiActionTypes,
+} from '../../bus/ui/types';
 
-export const localStorageMiddleware = (store: any) => (next: any) => (action: AnyAction) => {
+type Actions = CartActionTypes | UiActionTypes
+
+export const localStorageMiddleware: Middleware<{}, AppState> = (store) => (next) => (action: Actions) => {
     switch (action.type) {
-        case cartTypes.ADD_TO_CART:
+        case CART_ADD_PRODUCT:
             localStorage.set('cart', [ ...store.getState().cart, action.payload ]);
             break;
 
-        case cartTypes.REMOVE_FROM_CART:
+        case CART_REMOVE_PRODUCT:
             localStorage.set('cart', store.getState().cart.filter((productHash: string) => productHash !== action.payload));
             break;
 
-        case cartTypes.CLEAR_CART:
+        case CART_CLEAR:
             localStorage.set('cart', []);
             break;
 
-        case uiTypes.SET_VIEWED_PRODUCTS_STATE:
+        case SET_VIEWED_PRODUCTS_STATE:
             localStorage.set('viewedProducts', [ ...store.getState().ui.viewedProducts, action.payload ]);
             break;
 

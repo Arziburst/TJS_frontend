@@ -1,6 +1,9 @@
 import { WHITE, RED, GREEN, YELLOW, GRAY, DEEP_GRAY } from '../constants';
 
-export const statusTextHandler = (status, lang) => {
+type StatusTextHandler = (status: string | number, lang: string) => string;
+type StatusColorHandler = (status: string | number) => { backgroundColor: string, color: string };
+
+export const statusTextHandler: StatusTextHandler = (status, lang) => {
     if (lang === 'ru') {
         switch (status) {
             case 0: return 'отклонен';
@@ -19,7 +22,7 @@ export const statusTextHandler = (status, lang) => {
     }
 };
 
-export const statusColorHandler = (status) => {
+export const statusColorHandler: StatusColorHandler = (status) => {
     switch (status) {
         case 0:
         case '0': return { backgroundColor: RED, color: WHITE };

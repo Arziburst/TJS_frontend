@@ -9,7 +9,7 @@ export const useGalleryActions = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(galleryActions.fetchAsync());
+        dispatch(galleryActions.galleryFetchAsync());
     }, [ dispatch ]);
 
     const updateGalleryAsync = (formData) => dispatch(galleryActions.updateGalleryAsync(formData));

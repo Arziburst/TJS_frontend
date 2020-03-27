@@ -5,10 +5,10 @@ import { galleryActions } from '../../actions';
 import { galleryUpdater } from '../../../../api';
 
 // Instruments
-import { makeRequestWithSpinner } from '../../../../workers';
+import { makeRequest } from '../../../../helpers';
 
 export function* callUpdateGalleryWorker({ payload: formData }) {
-    yield makeRequestWithSpinner({
+    yield makeRequest({
         fetcher:     () => galleryUpdater(formData),
         togglerType: 'isGalleryUpdating',
         fill:        galleryActions.updateGallerySync,

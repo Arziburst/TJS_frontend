@@ -9,7 +9,7 @@ export const useOrdersFetch = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(orderActions.fetchAsync());
+        dispatch(orderActions.ordersFetchAsync());
     }, [ dispatch ]);
 
     const { orders, toggler } = useSelector(({ orders, togglers }) => ({

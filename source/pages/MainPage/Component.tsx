@@ -4,6 +4,10 @@ import { useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+// Types
+import { ExtendedProduct, Products } from '../../bus/products/types';
+import { AppState } from '../../init/rootReducer';
+
 // Components
 import { ProductNav, ProductGallery, ProductModal, RegistrationModal } from '../../components';
 
@@ -12,6 +16,16 @@ import { useProductsFilter } from '../../bus/ui';
 
 // Styles
 import S from './styles';
+
+type SelectorType = {
+  products: Products;
+  isProductsFetching: boolean;
+  role: string;
+  cart: string[];
+  viewedProducts: string[];
+};
+
+type ReducedProducts = Array<ExtendedProduct & { isProductInCart: boolean; isProductViewed: boolean }>
 
 const MainPage = () => {
     const { t } = useTranslation();
@@ -22,15 +36,17 @@ const MainPage = () => {
         role,
         cart,
         viewedProducts,
-    } = useSelector(({ products, togglers, profile, cart, ui }) => ({
-        products,
-        isProductsFetching: togglers.isProductsFetching,
-        role:               profile.role,
-        viewedProducts:     ui.viewedProducts,
-        cart,
-    }));
+    } = useSelector<AppState, SelectorType>(
+        ({ products, togglers, profile, cart, ui }) => ({
+            products,
+            isProductsFetching: togglers.isProductsFetching,
+            role:               profile.role,
+            viewedProducts:     ui.viewedProducts,
+            cart,
+        }),
+    );
 
-    const reduceProductsHandler = () => products.reduce((acc, product) => {
+    const reducedProductsHandler = products.reduce((acc: ReducedProducts, product: ExtendedProduct) => {
         const isProductInCart = cart.includes(product.hash);
         const isProductViewed = viewedProducts.includes(product.hash);
 
@@ -72,7 +88,7 @@ const MainPage = () => {
             {
                 !isProductsFetching && (
                     <ProductGallery
-                        products = { reduceProductsHandler() }
+                        products = { reducedProductsHandler }
                         role = { role }
                     />
                 )

@@ -2,7 +2,7 @@
 import types from './types';
 
 export const orderActions = Object.freeze({
-    fetchAsync: () => ({
+    ordersFetchAsync: () => ({
         type: types.FETCH_ORDERS_ASYNC,
     }),
 

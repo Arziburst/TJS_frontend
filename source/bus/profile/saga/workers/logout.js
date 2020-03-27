@@ -3,25 +3,25 @@ import { put } from 'redux-saga/effects';
 
 // Actions
 import { authActions } from '../../actions';
-import { uiActions } from '../../../ui/actions';
-import { togglerCreator } from '../../../togglers';
+import { resetAppToInnitialState } from '../../../ui/actions';
+import { togglerCreatorAction } from '../../../togglers';
 import { toast } from 'react-toastify';
 
 // Api
 import { logout } from '../../../../api';
 
 // Instruments
-import { makeRequestWithSpinner } from '../../../../workers';
+import { makeRequest } from '../../../../helpers';
 
 export function* callLogoutWorker () {
-    yield makeRequestWithSpinner({
+    yield makeRequest({
         fetcher:     logout,
         togglerType: 'isProfileFetching',
     });
 
-    yield put(togglerCreator('isAuthenticated', false));
+    yield put(togglerCreatorAction('isAuthenticated', false));
     yield put(authActions.logout());
-    yield put(uiActions.resetAppToInnitialState());
+    yield put(resetAppToInnitialState());
 
     process.env.NODE_ENV === 'development' && toast.success('Success Logout!');
 }

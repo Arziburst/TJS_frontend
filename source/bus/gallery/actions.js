@@ -2,7 +2,7 @@
 import types from './types';
 
 export const galleryActions = Object.freeze({
-    fetchAsync: () => ({
+    galleryFetchAsync: () => ({
         type: types.FETCH_GALLERY_ASYNC,
     }),
 

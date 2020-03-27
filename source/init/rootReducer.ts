@@ -10,7 +10,7 @@ import { ordersReducer as orders } from '../bus/orders/reducer';
 import { cartReducer as cart } from '../bus/cart/reducer';
 import { galleryReducer as gallery } from '../bus/gallery/reducer';
 
-export default combineReducers({
+export const rootReducer = combineReducers({
     ui,
     togglers,
     profile,
@@ -19,3 +19,5 @@ export default combineReducers({
     orders,
     gallery,
 });
+
+export type AppState = ReturnType<typeof rootReducer>;

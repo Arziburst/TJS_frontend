@@ -4,25 +4,28 @@ import { SagaIterator } from '@redux-saga/core';
 import { put, call } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
-// Action
-import { togglerCreator } from '../bus/togglers';
+// Types
+import { TogglersKeys } from '../bus/togglers';
 
-// Common types
-import { FillActionType } from '../types';
+// Action
+import { togglerCreatorAction } from '../bus/togglers';
 
 type OptionsType<T> = {
-    fetcher: (uri?: string) => Promise<T>;
-    togglerType?: ActionCreator<AnyAction>;
-    fill?: FillActionType<T>;
+    fetcher: (hash?: string) => Promise<T>;
+    togglerType?: TogglersKeys;
+    fill?: (payload: T) => {
+        type: string;
+        payload: T;
+    };
     successSideEffect?: ActionCreator<AnyAction>;
 };
 
-export function* makeRequestWithSpinner<T>(options: OptionsType<T>): SagaIterator {
+export function* makeRequest<T>(options: OptionsType<T>): SagaIterator<T | undefined> {
     const { fetcher, togglerType, fill, successSideEffect } = options;
 
     try {
         if (togglerType) {
-            yield put(togglerCreator(togglerType, true));
+            yield put(togglerCreatorAction(togglerType, true));
         }
 
         const result = yield call(fetcher);
@@ -42,7 +45,7 @@ export function* makeRequestWithSpinner<T>(options: OptionsType<T>): SagaIterato
         }
     } finally {
         if (togglerType) {
-            yield put(togglerCreator(togglerType, false));
+            yield put(togglerCreatorAction(togglerType, false));
         }
     }
 }

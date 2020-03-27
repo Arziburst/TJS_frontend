@@ -10,10 +10,10 @@ import { orderActions } from '../../actions';
 import { editOrderFetcher } from '../../../../api';
 
 // Instruments
-import { makeRequestWithSpinner } from '../../../../workers';
+import { makeRequest } from '../../../../helpers';
 
 export function* callEditOrderWorker ({ payload }) {
-    const result = yield makeRequestWithSpinner({
+    const result = yield makeRequest({
         fetcher:     editOrderFetcher(payload),
         togglerType: 'isOrderFetching',
         fill:        orderActions.editOrderSync,

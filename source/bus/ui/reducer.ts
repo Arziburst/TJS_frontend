@@ -1,5 +1,7 @@
 // Types
-import types from './types';
+import { Reducer } from 'redux';
+import { UiState, UiActionTypes } from './types';
+import * as types from './types';
 
 const initialState = {
     type:             'All',
@@ -7,30 +9,30 @@ const initialState = {
     viewedProducts:   [],
 };
 
-export const uiReducer = (state = initialState, { type, payload }) => {
-    switch (type) {
+export const uiReducer: Reducer<UiState, UiActionTypes> = (state = initialState, action) => {
+    switch (action.type) {
         case types.SET_PRODUCTS_FILTER_STATE:
             return {
                 ...state,
-                type: payload,
+                type: action.payload,
             };
 
         case types.SET_CART_MODAL_STATE:
             return {
                 ...state,
-                isCartModalExist: payload,
+                isCartModalExist: action.payload,
             };
 
         case types.SET_VIEWED_PRODUCTS_STATE:
             return {
                 ...state,
-                viewedProducts: [ ...state.viewedProducts, payload ],
+                viewedProducts: [ ...state.viewedProducts, action.payload ],
             };
 
         case types.SET_INITIAL_VIEWED_PRODUCTS_STATE:
             return {
                 ...state,
-                viewedProducts: payload,
+                viewedProducts: action.payload,
             };
 
         default:

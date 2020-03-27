@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 // Styles
 import S from './styles';
 
-export const ProductNav = ({ productsFilterState, setProductsFilterState}) => {
+export const ProductNav = ({ productsFilterState, setProductsFilterState }) => {
     const { t } = useTranslation();
 
     return (

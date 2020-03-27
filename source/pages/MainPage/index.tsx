@@ -6,7 +6,7 @@ import Loadable from 'react-loadable';
 import { Loading } from '../../components';
 
 const LoadableComponent = Loadable({
-    loader:  () => import(/* webpackChunkName: "MainPage" */ './Component.js'),
+    loader:  () => import(/* webpackChunkName: "MainPage" */ './Component'),
     loading: Loading,
     delay:   1000,
 });

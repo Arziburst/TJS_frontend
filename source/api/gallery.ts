@@ -18,7 +18,7 @@ export const galleryFetcher = async () => {
     return data;
 };
 
-export const galleryUpdater = async (formData) => {
+export const galleryUpdater = async (formData: FormData) => {
     const response = await fetch(`${API_ROOT}/images`, {
         method:      'POST',
         credentials: 'include',
@@ -34,7 +34,7 @@ export const galleryUpdater = async (formData) => {
     return data;
 };
 
-export const deleteGalleryItemFetcher = async (public_id) => {
+export const deleteGalleryItemFetcher = async (public_id: string) => {
     const response = await fetch(`${API_ROOT}/images/${public_id}`, {
         method:      'DELETE',
         credentials: 'include',

@@ -5,10 +5,10 @@ import { galleryActions } from '../../actions';
 import { galleryFetcher } from '../../../../api';
 
 // Instruments
-import { makeRequestWithSpinner } from '../../../../workers';
+import { makeRequest } from '../../../../helpers';
 
 export function* callFetchGalleryWorker () {
-    yield makeRequestWithSpinner({
+    yield makeRequest({
         fetcher:     galleryFetcher,
         togglerType: 'isGalleryFetching',
         fill:        galleryActions.fill,

@@ -1,4 +1,11 @@
-export const arrayСomparison = (arrayOfStrings, checkedArray) => checkedArray.reduce((acc, string) => {
+type Result = {
+    isAllStringsExists: boolean,
+    newArray: string[]
+}
+
+type ArrayСomparison = (arrayOfStrings: string[], checkedArray: string[]) => Result;
+
+export const arrayСomparison: ArrayСomparison = (arrayOfStrings, checkedArray) => checkedArray.reduce((acc, string) => {
     let temp = {};
     const isStringExistInArrayOfStrings = arrayOfStrings.includes(string);
 
@@ -11,4 +18,4 @@ export const arrayСomparison = (arrayOfStrings, checkedArray) => checkedArray.r
     }
 
     return { ...acc, ...temp };
-}, { isAllStringsExists: true, newArray: [] });
+}, <Result>{ isAllStringsExists: true, newArray: [] });

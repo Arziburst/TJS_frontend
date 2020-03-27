@@ -3,7 +3,7 @@ import { put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
 // Actions
-import { togglerCreator } from '../../../togglers';
+import { togglerCreatorAction } from '../../../togglers';
 import { authActions } from '../../actions';
 import { orderActions } from '../../../orders/actions';
 
@@ -11,18 +11,18 @@ import { orderActions } from '../../../orders/actions';
 import { login } from '../../../../api';
 
 // Instruments
-import { makeRequestWithSpinner } from '../../../../workers';
+import { makeRequest } from '../../../../helpers';
 
 export function* callLoginWorker ({ payload: { email, password }}) {
-    const result = yield makeRequestWithSpinner({
+    const result = yield makeRequest({
         fetcher:     login(email, password),
         togglerType: 'isProfileFetching',
         fill:        authActions.fillProfile,
     });
 
     if (result) {
-        yield put(togglerCreator('isAuthenticated', true));
-        yield put(orderActions.fetchAsync());
+        yield put(togglerCreatorAction('isAuthenticated', true));
+        yield put(orderActions.ordersFetchAsync());
         toast.success('Success Login!');
     }
 }
