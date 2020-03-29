@@ -1,29 +1,31 @@
 // Core
 import { put } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
 import { toast } from 'react-toastify';
 
+// Types
+import { LoginAsyncAction } from '../../types';
+
 // Actions
-import { authActions } from '../../actions';
 import { togglerCreatorAction } from '../../../togglers';
+import { fillProfile } from '../../actions';
+import { orderActions } from '../../../orders/actions';
 
 // Api
-import { registration } from '../../../../api';
+import { login } from '../../../../api';
 
 // Instruments
 import { makeRequest } from '../../../../helpers';
 
-export function* callRegistrationWorker ({ payload: body }) {
+export function* callLoginWorker({ payload: { email, password } }: LoginAsyncAction) {
     const result = yield makeRequest({
-        fetcher:     registration(body),
+        fetcher:     login(email, password),
         togglerType: 'isProfileFetching',
-        fill:        authActions.fillProfile,
+        fill:        fillProfile,
     });
 
     if (result) {
         yield put(togglerCreatorAction('isAuthenticated', true));
-        toast.success('Success Registration!');
+        yield put(orderActions.ordersFetchAsync());
         toast.success('Success Login!');
-        yield put(push('/'));
     }
 }

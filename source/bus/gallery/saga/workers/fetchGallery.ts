@@ -1,5 +1,8 @@
+// Types
+import { Image } from '../../types';
+
 // Actions
-import { galleryActions } from '../../actions';
+import { fill } from '../../actions';
 
 // Api
 import { galleryFetcher } from '../../../../api';
@@ -8,9 +11,9 @@ import { galleryFetcher } from '../../../../api';
 import { makeRequest } from '../../../../helpers';
 
 export function* callFetchGalleryWorker () {
-    yield makeRequest({
+    yield makeRequest<Image[]>({
         fetcher:     galleryFetcher,
         togglerType: 'isGalleryFetching',
-        fill:        galleryActions.fill,
+        fill,
     });
 }

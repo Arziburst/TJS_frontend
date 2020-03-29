@@ -1,5 +1,5 @@
 // Core
-import { put } from 'redux-saga/effects';
+// import { put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { toast } from 'react-toastify';
 

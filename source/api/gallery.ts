@@ -1,6 +1,12 @@
+// Types
+import { GalleryState } from '../bus/gallery/types';
+
+// Api
 import { API_ROOT } from './config';
 
-export const galleryFetcher = async () => {
+type Data<T> = { data: T };
+
+export const galleryFetcher = async (): Promise<GalleryState> => {
     const response = await fetch(`${API_ROOT}/images`, {
         method:      'GET',
         credentials: 'include',
@@ -13,12 +19,12 @@ export const galleryFetcher = async () => {
         throw new Error('Gallery fetch failed');
     }
 
-    const { data } = await response.json();
+    const { data }: Data<GalleryState> = await response.json();
 
     return data;
 };
 
-export const galleryUpdater = async (formData: FormData) => {
+export const galleryUpdater = async (formData: FormData): Promise<GalleryState> => {
     const response = await fetch(`${API_ROOT}/images`, {
         method:      'POST',
         credentials: 'include',
@@ -29,12 +35,12 @@ export const galleryUpdater = async (formData: FormData) => {
         throw new Error('Gallery update failed');
     }
 
-    const { data } = await response.json();
+    const { data }: Data<GalleryState> = await response.json();
 
     return data;
 };
 
-export const deleteGalleryItemFetcher = async (public_id: string) => {
+export const deleteGalleryItemFetcher = async (public_id: string): Promise<string> => {
     const response = await fetch(`${API_ROOT}/images/${public_id}`, {
         method:      'DELETE',
         credentials: 'include',
@@ -47,7 +53,7 @@ export const deleteGalleryItemFetcher = async (public_id: string) => {
         throw new Error('Gallery item delete failed');
     }
 
-    const { data } = await response.json();
+    const { data }: Data<string> = await response.json();
 
     return data;
 };

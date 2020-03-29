@@ -1,6 +1,5 @@
 import { Reducer } from 'redux';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../init/rootReducer';
+import { useSelector } from '../../hooks';
 
 const initialState = {
     isInitialized:      false,
@@ -45,15 +44,25 @@ export const togglerCreatorAction = (type: TogglersKeys, value: boolean): Toggle
 });
 
 
-export const useSelectorTogglers = (
-    props: TogglersKeys | Array<TogglersKeys>,
-) => useSelector<AppState, Object | boolean>(({ togglers }) => {
-    if (props instanceof Array) {
-        return props.reduce((acc, propertyName) => ({
-            ...acc,
-            [ propertyName ]: togglers[ propertyName ],
-        }), {});
-    }
+type TogglersObj = {
+    [key in TogglersKeys]: boolean
+};
 
+// TODO TogglersObj dymamic type
+export const useSelectorTogglers = (props: Array<TogglersKeys>) => {
+    return useSelector<TogglersObj>(({ togglers }) => {
+        const result = props.reduce((acc, propertyName) => {
+            return {
+                ...acc,
+                [ propertyName ]: togglers[ propertyName ],
+            };
+        }, {} as TogglersObj);
+
+        return result;
+    });
+};
+
+export const useSelectorToggler = (props: TogglersKeys) => useSelector<boolean>(({ togglers }) => {
     return togglers[ props ];
 });
+

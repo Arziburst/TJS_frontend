@@ -1,6 +1,13 @@
+// Types
+import { ProfileState, Registration } from '../bus/profile/types';
+
+// Api
 import { API_ROOT } from './config';
 
-export const authenticate = async () => {
+// Instruments
+type Data<T> = { data: T };
+
+export const authenticateRequest = async (): Promise<ProfileState> => {
     const response = await fetch(`${API_ROOT}/profile/refresh`, {
         method:      'GET',
         credentials: 'include',
@@ -10,15 +17,15 @@ export const authenticate = async () => {
     });
 
     if (response.status !== 200) {
-        throw new Error('');
+        throw new Error('Session expired');
     }
 
-    const { data } = await response.json();
+    const { data }: Data<ProfileState> = await response.json();
 
     return data;
 };
 
-export const registration = (body) => async () => {
+export const registration = (body: Registration) => async (): Promise<ProfileState> => {
     const response = await fetch(`${API_ROOT}/profile/registration`, {
         method:      'POST',
         credentials: 'include',
@@ -32,12 +39,12 @@ export const registration = (body) => async () => {
         throw new Error('Email or phone number already registered!');
     }
 
-    const { data } = await response.json();
+    const { data }: Data<ProfileState> = await response.json();
 
     return data;
 };
 
-export const login = (email, password) => async () => {
+export const login = (email: string, password: string) => async (): Promise<ProfileState> => {
     const response = await fetch(`${API_ROOT}/profile/login`, {
         method:      'POST',
         credentials: 'include',
@@ -52,12 +59,12 @@ export const login = (email, password) => async () => {
         throw new Error('Credentials are not valid!');
     }
 
-    const { data } = await response.json();
+    const { data }: Data<ProfileState> = await response.json();
 
     return data;
 };
 
-export const logout = async () => {
+export const logoutRequest = async (): Promise<number> => {
     const response = await fetch(`${API_ROOT}/profile/logout`, {
         method:      'DELETE',
         credentials: 'include',

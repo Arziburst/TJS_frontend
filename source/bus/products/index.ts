@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Product } from './types';
 
 // Hooks
-import { useSelectorTogglers } from '../togglers';
+import { useSelectorToggler } from '../togglers';
 
 // Actions
 import {
@@ -19,7 +19,7 @@ export const useCreateNewProduct = () => {
     const dispatch = useDispatch();
 
     const handlerAsync = (body: Product) => dispatch(createNewProductAsync(body));
-    const toggler = useSelectorTogglers('isProductFetching');
+    const toggler = useSelectorToggler('isProductFetching');
 
     return [
         handlerAsync,
@@ -36,7 +36,7 @@ export const useEditProduct = () => {
         editedProduct: Product,
     ) => dispatch(editProductAsync(productHash, editedProduct));
 
-    const toggler = useSelectorTogglers('isProductFetching');
+    const toggler = useSelectorToggler('isProductFetching');
 
     return [
         handlerAsync,
@@ -48,7 +48,7 @@ export const useDeleteProduct = () => {
     const dispatch = useDispatch();
 
     const handlerAsync = (producthash: string) => dispatch(deleteProductAsync(producthash));
-    const toggler = useSelectorTogglers('isProductFetching');
+    const toggler = useSelectorToggler('isProductFetching');
 
     return [
         handlerAsync,

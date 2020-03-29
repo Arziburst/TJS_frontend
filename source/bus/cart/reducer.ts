@@ -4,9 +4,9 @@ import { Reducer } from 'redux';
 // Types
 import * as types from './types';
 
-const initialState: Array<string> = [];
+const initialState: types.CartState = [];
 
-export const cartReducer: Reducer<Array<string>, types.CartActionTypes> = (state = initialState, action) => {
+export const cartReducer: Reducer<types.CartState, types.CartActionTypes> = (state = initialState, action) => {
     switch (action.type) {
         case types.CART_ADD_PRODUCT:
             return [ ...state, action.payload ];

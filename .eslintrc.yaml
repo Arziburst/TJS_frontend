@@ -342,7 +342,7 @@ rules:
         - exceptAfterSingleLine: true
     max-depth: 0
     max-len:
-        - 2
+        - 0
         - 120
         - ignoreTemplateLiterals: true
           ignoreStrings: true

@@ -1,3 +1,5 @@
+export type CartState = Array<string>;
+
 export const CART_ADD_PRODUCT = 'CART_ADD_PRODUCT';
 export type CartAddProductAction = {
     type: typeof CART_ADD_PRODUCT;

@@ -2,21 +2,21 @@
 import { put } from 'redux-saga/effects';
 
 // Actions
-import { authActions } from '../../actions';
+import { fillProfile } from '../../actions';
 import { orderActions } from '../../../orders/actions';
 import { togglerCreatorAction } from '../../../togglers';
 
 // Api
-import { authenticate } from '../../../../api';
+import { authenticateRequest } from '../../../../api';
 
 // Instruments
 import { makeRequest } from '../../../../helpers';
 
 export function* callAuthenticateWorker () {
     const result = yield makeRequest({
-        fetcher:     authenticate,
+        fetcher:     authenticateRequest,
         togglerType: 'isProfileFetching',
-        fill:        authActions.fillProfile,
+        fill:        fillProfile,
     });
 
     if (result) {

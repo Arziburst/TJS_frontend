@@ -1,5 +1,5 @@
 // Core
-import merge from 'webpack-merge';
+import merge from 'lodash.merge';
 
 // Children locale
 import { GalleryPopup } from './GalleryPopup/locale';

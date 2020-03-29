@@ -1,8 +1,8 @@
 // Core
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-// Types
-import { AppState } from '../../init/rootReducer';
+// Hooks
+import { useSelector } from '../../hooks';
 
 // Actions
 import {
@@ -10,13 +10,11 @@ import {
     setCartModalState,
 } from './actions';
 
-// const useSelectorUi = (props) => useSelector(({ ui }) => ui.type);
-
 export const useProductsFilter = () => {
     const dispatch = useDispatch();
 
     return {
-        productsFilterState:    useSelector<AppState, string>(({ ui }) => ui.type),
+        productsFilterState:    useSelector(({ ui }) => ui.type),
         setProductsFilterState: (type: string) => dispatch(setProductsFilterState(type)),
     };
 };
@@ -24,7 +22,7 @@ export const useProductsFilter = () => {
 export const useCartModal = () => {
     const dispatch = useDispatch();
 
-    const isCartModalExist = useSelector<AppState, boolean>(({ ui }) => ui.isCartModalExist);
+    const isCartModalExist = useSelector(({ ui }) => ui.isCartModalExist);
     const setCartModalStateAction = (state: boolean) => dispatch(setCartModalState(state));
 
     return {

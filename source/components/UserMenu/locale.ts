@@ -1,5 +1,5 @@
 // Core
-import merge from 'webpack-merge';
+import merge from 'lodash.merge';
 
 // Locales
 import { Togglers } from './Togglers/locale';

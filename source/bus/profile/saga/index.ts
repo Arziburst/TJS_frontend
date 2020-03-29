@@ -1,9 +1,9 @@
 // Core
-import { takeEvery, all, call } from 'redux-saga/effects';
 import { SagaIterator } from '@redux-saga/core';
+import { takeEvery, all, call } from 'redux-saga/effects';
 
 // Instruments
-import types from '../types';
+import * as types from '../types';
 
 import {
     callInitializeWorker,
