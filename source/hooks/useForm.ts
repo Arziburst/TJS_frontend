@@ -19,6 +19,22 @@ export const useForm = <T>(initialValues: T): [T, OnChange, Function ] => {
     return [ form, handleChange, setNewInnitialValues ];
 };
 
+export const useStatusForm = (initialValue: number): [number, OnChange, Function ] => {
+    const [ form, setForm ] = useState<number>(initialValue);
+
+    const handleChange: OnChange = (event) => {
+        event.persist();
+        const value: string | number = event.target.value;
+        const result = typeof value === 'string' ? parseInt(value, 10) : value;
+
+        setForm(result);
+    };
+
+    const setNewInnitialValues = (newInnitialValue: number): void => void setForm(newInnitialValue);
+
+    return [ form, handleChange, setNewInnitialValues ];
+};
+
 export const useImagesForm = (initialValues: Array<string>): [ Array<string>, Function, Function ] => {
     const [ form, setForm ] = useState<Array<string>>(initialValues);
 

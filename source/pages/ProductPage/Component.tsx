@@ -24,13 +24,13 @@ import S from './styles';
 const ProductPage = () => {
     const { t } = useTranslation();
     const history = useHistory();
-    const { hash: hashFromUrl } = useParams();
+    const { hash: hashFromUrl } = useParams<{ hash: string }>();
     const incrementProductViewsAsync = useIncrementProductViews();
     const isProductsFetching = useSelectorTogglers().isProductsFetching;
     const cart = useSelectorCart();
-    const isProductInCart = cart.includes(hashFromUrl || '');
-    const product = useProductsFindOneByHash(hashFromUrl || '');
-    const isProductViewed = useSelectorUi().viewedProducts.includes(hashFromUrl || '');
+    const isProductInCart = cart.includes(hashFromUrl);
+    const product = useProductsFindOneByHash(hashFromUrl);
+    const isProductViewed = useSelectorUi().viewedProducts.includes(hashFromUrl);
 
     useEffect(() => {
         hashFromUrl && product && !isProductViewed && incrementProductViewsAsync(hashFromUrl);

@@ -10,7 +10,7 @@ import { Modal } from '..';
 import { OrderItem } from './OrderItem';
 
 // Hooks
-import { useForm } from '../../hooks';
+import { useStatusForm } from '../../hooks';
 import { useOrderEdit, useOrdersFindOneByHash } from '../../bus/orders';
 import { useSelectorProfile } from '../../bus/profile';
 
@@ -26,18 +26,11 @@ import S from './styles';
 export const OrderModal: FC = () => {
     const history = useHistory();
     const { t, i18n } = useTranslation();
-    const { hash: hashFromUrl } = useParams();
-    const order = useOrdersFindOneByHash(hashFromUrl || '');
-    const role = useSelectorProfile().role;
-
+    const { hash: hashFromUrl } = useParams<{ hash: string }>();
+    const order = useOrdersFindOneByHash(hashFromUrl);
     const { editOrderAsync, isOrderFetching } = useOrderEdit();
-    const innitialValue = order ? order.status : 0;
-    const [ status, setStatus ] = useForm<number>(innitialValue);
-
-    // TODO TYPE BUG !!!!!
-    console.log('OrderModal:FC -> status', status);
-
-    const isAdmin = role === 'admin';
+    const [ status, setStatus ] = useStatusForm(order ? order.status : 0);
+    const isAdmin = useSelectorProfile().role === 'admin';
 
     if (!order) {
         history.push('/orders');
@@ -113,7 +106,7 @@ export const OrderModal: FC = () => {
                         isAdmin && (
                             <Button
                                 disabled = { isOrderFetching }
-                                onClick = { () => editOrderAsync({ status }, hashFromUrl || '') }>
+                                onClick = { () => editOrderAsync({ status }, hashFromUrl) }>
                                 { isOrderFetching ? t('OrderModal.loading') : t('OrderModal.save') }
                             </Button>
                         )

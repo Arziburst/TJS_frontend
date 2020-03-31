@@ -40,13 +40,13 @@ type PropTypes = {
 
 export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
     const { t } = useTranslation();
-    const { hash: hashFromUrl } = useParams();
+    const { hash: hashFromUrl } = useParams<{ hash: string }>();
     const { createNewProductAsync, editProductAsync, deleteProductAsync, toggler } = useProductsActions();
     const [ galleryPopupState, setGalleryPopupState ] = useState<boolean>(false);
     const [ form, setForm, setNewInnitialValuesForm ] = useForm<FormTypes>(formInnitialState);
     const [ imageForm, setImageForm, setInnitialValuesImageForm ] = useImagesForm([]);
 
-    const product = useProductsFindOneByHash(hashFromUrl || '');
+    const product = useProductsFindOneByHash(hashFromUrl);
 
     useEffect(() => {
         if (!product) {
@@ -82,7 +82,7 @@ export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
         images: imageForm,
     });
 
-    const editProductHandler = () => validation && void editProductAsync(hashFromUrl || '', {
+    const editProductHandler = () => validation && void editProductAsync(hashFromUrl, {
         ...form,
         images: imageForm,
     });
@@ -91,7 +91,7 @@ export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
         // eslint-disable-next-line no-alert
         const isConfirmed = window.confirm(t('ProductModal.deleteConfirm'));
         if (isConfirmed) {
-            deleteProductAsync(hashFromUrl || '');
+            deleteProductAsync(hashFromUrl);
         }
     };
 
