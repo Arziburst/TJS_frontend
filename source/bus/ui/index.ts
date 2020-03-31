@@ -10,11 +10,13 @@ import {
     setCartModalState,
 } from './actions';
 
+export const useSelectorUi = () => useSelector(({ ui }) => ui);
+
 export const useProductsFilter = () => {
     const dispatch = useDispatch();
 
     return {
-        productsFilterState:    useSelector(({ ui }) => ui.type),
+        productsFilterState:    useSelectorUi().type,
         setProductsFilterState: (type: string) => dispatch(setProductsFilterState(type)),
     };
 };
@@ -22,11 +24,9 @@ export const useProductsFilter = () => {
 export const useCartModal = () => {
     const dispatch = useDispatch();
 
-    const isCartModalExist = useSelector(({ ui }) => ui.isCartModalExist);
-    const setCartModalStateAction = (state: boolean) => dispatch(setCartModalState(state));
-
     return {
-        isCartModalExist,
-        setCartModalStateAction,
+        isCartModalExist:  useSelectorUi().isCartModalExist,
+        setCartModalState: (state: boolean) => dispatch(setCartModalState(state)),
     };
 };
+

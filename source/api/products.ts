@@ -1,6 +1,10 @@
-import { API_ROOT } from './config';
+// Types
 import { Products, Product, ExtendedProduct } from '../bus/products/types';
 
+// Api
+import { API_ROOT } from './config';
+
+// Instruments
 type Data<T> = { data: T };
 
 export const productsFetcher = async (): Promise<Products> => {

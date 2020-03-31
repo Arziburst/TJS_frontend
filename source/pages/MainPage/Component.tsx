@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -10,25 +10,29 @@ import { ExtendedProduct } from '../../bus/products/types';
 import { ProductNav, ProductGallery, ProductModal, RegistrationModal } from '../../components';
 
 // Hooks
-import { useSelectorToggler } from '../../bus/togglers';
-import { useProductsFilter } from '../../bus/ui';
-import { useSelector } from '../../hooks';
+import { useSelectorCart } from '../../bus/cart';
+import { useSelectorTogglers } from '../../bus/togglers';
+import { useProductsFilter, useSelectorUi } from '../../bus/ui';
+import { useProductsFindMany } from '../../bus/products';
+import { useSelectorProfile } from '../../bus/profile';
+
 
 // Styles
 import S from './styles';
 
-type ReducedProducts = Array<ExtendedProduct & { isProductInCart: boolean; isProductViewed: boolean }>
+type ReducedProducts = Array<ExtendedProduct & {
+    isProductInCart: boolean;
+    isProductViewed: boolean
+}>;
 
-const MainPage = () => {
+const MainPage: FC = () => {
     const { t } = useTranslation();
     const { productsFilterState, setProductsFilterState } = useProductsFilter();
-    const isProductsFetching = useSelectorToggler('isProductsFetching');
-    const { products, role, cart, viewedProducts } = useSelector(({ products, profile, cart, ui }) => ({
-        products,
-        role:           profile.role,
-        viewedProducts: ui.viewedProducts,
-        cart,
-    }));
+    const isProductsFetching = useSelectorTogglers().isProductsFetching;
+    const products = useProductsFindMany();
+    const role = useSelectorProfile().role;
+    const viewedProducts = useSelectorUi().viewedProducts;
+    const cart = useSelectorCart();
 
     const reducedProductsHandler = products.reduce((acc: ReducedProducts, product: ExtendedProduct) => {
         const isProductInCart = cart.includes(product.hash);

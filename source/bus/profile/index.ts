@@ -2,9 +2,12 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+// Hooks
+import { useSelector } from '../../hooks';
+
 // Types
 import { Credentials, Registration } from './types';
-import { useSelectorTogglers, useSelectorToggler } from '../togglers';
+import { useSelectorTogglers } from '../togglers';
 
 // Actions
 import {
@@ -21,7 +24,12 @@ export const useInitialize = () => {
         dispatch(initializeAsync());
     }, [ dispatch ]);
 
-    return useSelectorTogglers([ 'isInitialized', 'isAuthenticated' ]);
+    const { isInitialized, isAuthenticated } = useSelectorTogglers();
+
+    return {
+        isInitialized,
+        isAuthenticated,
+    };
 };
 
 export const useRegistration = () => {
@@ -29,7 +37,7 @@ export const useRegistration = () => {
 
     return {
         registrationAsync: (body: Registration) => dispatch(registrationAsync(body)),
-        toggler:           useSelectorToggler('isProfileFetching'),
+        toggler:           useSelectorTogglers().isProfileFetching,
     };
 };
 
@@ -38,7 +46,7 @@ export const useLogin = () => {
 
     return {
         loginAsync: (credentials: Credentials) => dispatch(loginAsync(credentials)),
-        toggler:    useSelectorToggler('isProfileFetching'),
+        toggler:    useSelectorTogglers().isProfileFetching,
     };
 };
 
@@ -47,6 +55,8 @@ export const useLogout = () => {
 
     return {
         logoutHandler: () => dispatch(logoutAsync()),
-        toggler:       useSelectorToggler('isProfileFetching'),
+        toggler:       useSelectorTogglers().isProfileFetching,
     };
 };
+
+export const useSelectorProfile = () => useSelector(({ profile }) => profile);

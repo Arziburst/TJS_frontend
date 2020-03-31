@@ -1,6 +1,9 @@
 // Core
 import { useDispatch } from 'react-redux';
 
+// Hooks
+import { useSelector } from '../../hooks';
+
 // Actions
 import { addToCart, removeFromCart, clearCart } from './actions';
 
@@ -13,3 +16,5 @@ export const useCartActions = () => {
         clearCart:      () => dispatch(clearCart()),
     };
 };
+
+export const useSelectorCart = () => useSelector(({cart}) => cart);

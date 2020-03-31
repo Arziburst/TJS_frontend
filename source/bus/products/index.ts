@@ -1,11 +1,12 @@
 // Core
 import { useDispatch } from 'react-redux';
+import { useSelector } from '../../hooks';
 
 // Types
 import { Product } from './types';
 
 // Hooks
-import { useSelectorToggler } from '../togglers';
+import { useSelectorTogglers } from '../togglers';
 
 // Actions
 import {
@@ -15,45 +16,21 @@ import {
     incrementProductViewsAsync,
 } from './actions';
 
-export const useCreateNewProduct = () => {
+export const useProductsActions = () => {
     const dispatch = useDispatch();
 
-    const handlerAsync = (body: Product) => dispatch(createNewProductAsync(body));
-    const toggler = useSelectorToggler('isProductFetching');
+    return {
+        createNewProductAsync: (body: Product) => dispatch(createNewProductAsync(body)),
 
-    return [
-        handlerAsync,
-        toggler,
-    ];
-};
+        editProductAsync: (
+            productHash: string,
+            editedProduct: Product,
+        ) => dispatch(editProductAsync(productHash, editedProduct)),
 
+        deleteProductAsync: (producthash: string) => dispatch(deleteProductAsync(producthash)),
 
-export const useEditProduct = () => {
-    const dispatch = useDispatch();
-
-    const handlerAsync = (
-        productHash: string,
-        editedProduct: Product,
-    ) => dispatch(editProductAsync(productHash, editedProduct));
-
-    const toggler = useSelectorToggler('isProductFetching');
-
-    return [
-        handlerAsync,
-        toggler,
-    ];
-};
-
-export const useDeleteProduct = () => {
-    const dispatch = useDispatch();
-
-    const handlerAsync = (producthash: string) => dispatch(deleteProductAsync(producthash));
-    const toggler = useSelectorToggler('isProductFetching');
-
-    return [
-        handlerAsync,
-        toggler,
-    ];
+        toggler: useSelectorTogglers().isProductFetching,
+    };
 };
 
 export const useIncrementProductViews = () => {
@@ -61,3 +38,7 @@ export const useIncrementProductViews = () => {
 
     return (productHash: string) => dispatch(incrementProductViewsAsync(productHash));
 };
+
+export const useProductsFindMany = () => useSelector(({ products }) => products);
+
+export const useProductsFindOneByHash = (hash: string) => useProductsFindMany().find((product) => product.hash === hash);

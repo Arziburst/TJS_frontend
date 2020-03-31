@@ -7,7 +7,7 @@ export const loadTypeScript = () => ({
     module: {
         rules: [
             {
-                test:    /\.ts(x?)|.js$/,
+                test:    /\.ts(x?)$/,
                 exclude: /node_modules/,
                 use:     {
                     loader:  'awesome-typescript-loader',

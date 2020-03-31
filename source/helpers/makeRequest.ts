@@ -20,7 +20,7 @@ type OptionsType<T> = {
     successSideEffect?: ActionCreator<AnyAction>;
 };
 
-export function* makeRequest<T>(options: OptionsType<T>): SagaIterator<T | undefined> {
+export function* makeRequest<T>(options: OptionsType<T>) {
     const { fetcher, togglerType, fill, successSideEffect } = options;
 
     try {

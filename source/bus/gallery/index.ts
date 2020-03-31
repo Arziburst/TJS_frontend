@@ -26,7 +26,7 @@ export const useGalleryActions = () => {
         dispatch(galleryFetchAsync());
     }, [ dispatch ]);
 
-    const { isGalleryFetching, isGalleryUpdating } = useSelectorTogglers([ 'isGalleryFetching', 'isGalleryUpdating' ]);
+    const { isGalleryFetching, isGalleryUpdating } = useSelectorTogglers();
 
     return {
         gallery:                useSelectorGallery(),

@@ -52,3 +52,7 @@ export const themes = {
         },
     },
 };
+
+export type DefaultLightTheme = typeof themes.lightTheme;
+export type ThemeType = typeof themes;
+export type ThemesKeys = keyof ThemeType;

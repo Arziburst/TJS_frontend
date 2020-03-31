@@ -43,26 +43,5 @@ export const togglerCreatorAction = (type: TogglersKeys, value: boolean): Toggle
     },
 });
 
-
-type TogglersObj = {
-    [key in TogglersKeys]: boolean
-};
-
-// TODO TogglersObj dymamic type
-export const useSelectorTogglers = (props: Array<TogglersKeys>) => {
-    return useSelector<TogglersObj>(({ togglers }) => {
-        const result = props.reduce((acc, propertyName) => {
-            return {
-                ...acc,
-                [ propertyName ]: togglers[ propertyName ],
-            };
-        }, {} as TogglersObj);
-
-        return result;
-    });
-};
-
-export const useSelectorToggler = (props: TogglersKeys) => useSelector<boolean>(({ togglers }) => {
-    return togglers[ props ];
-});
+export const useSelectorTogglers = () => useSelector<TogglersState>(({ togglers }) => togglers);
 

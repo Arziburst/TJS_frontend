@@ -17,7 +17,7 @@ export const authenticateRequest = async (): Promise<ProfileState> => {
     });
 
     if (response.status !== 200) {
-        throw new Error('Session expired');
+        throw new Error('');
     }
 
     const { data }: Data<ProfileState> = await response.json();

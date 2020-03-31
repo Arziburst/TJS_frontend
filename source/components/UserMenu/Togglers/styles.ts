@@ -14,7 +14,7 @@ export default {
         }
     `,
 
-    Toggler: styled.button`
+    Toggler: styled.button<{ isActive: boolean, onClick: (event: MouseEvent) => void }>`
         ${({ isActive, theme }) => isActive
         ? {
             color:           WHITE,
