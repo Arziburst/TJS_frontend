@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "module": "CommonJS",
+        "rootDir": "scripts",
+        "typeRoots": [ "node_modules/@types" ]
+    },
+    "include": [ "scripts" ],
+  }
+  
