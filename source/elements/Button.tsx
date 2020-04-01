@@ -38,6 +38,17 @@ const ButtonContainer = styled.button<{ styles: Function | Object | null }>`
     border-radius: 12px;
 
     transition: transform 0.3s, box-shadow 0.3s;
+
+    ${({ theme }) => theme.button};
+    ${({ theme, styles }) => {
+        if (typeof styles === 'function') {
+            return styles(theme.themeName);
+        }
+
+        if (styles) {
+            return styles;
+        }
+    }};
 `;
 
 type PropTypes = {

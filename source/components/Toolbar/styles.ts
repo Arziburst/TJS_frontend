@@ -79,6 +79,7 @@ export default {
     ContactData: styled.section`
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
 
         a {
             color: ${({ theme }) => theme.themeName === 'lightTheme' ? PINK : WHITE};
@@ -91,20 +92,14 @@ export default {
                 text-decoration: underline;
             }
 
-            &:first-child {
-                margin-right: 10px;
-            }
-
             &:last-child {
-                margin-left: 10px;
+                text-align: center;
             }
         }
 
-        @media (max-width: 700px) {
-            flex-direction: column;
-
+        @media (max-width: 400px) {
             a {
-                font-size: 16px;
+                font-size: 15px;
             }
         }
     `,

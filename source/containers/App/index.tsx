@@ -1,6 +1,6 @@
 // Core
-import React, { useMemo, FC } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useMemo, useState, FC } from 'react';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 
@@ -8,7 +8,12 @@ import { ToastContainer } from 'react-toastify';
 import { Toolbar, Footer, CartModal, CartButton } from '../../components';
 
 // Pages
-import { MainPage, ProductPage, OrdersPage } from '../../pages';
+import {
+    MainPage,
+    ProductPage,
+    OrdersPage,
+    AboutUsPage,
+} from '../../pages';
 
 // Hooks
 import { useInitialize } from '../../bus/profile';
@@ -24,10 +29,18 @@ import S from './styles';
 import G from '../../assets/globalStyles';
 
 const App: FC = () => {
+    const history = useHistory();
     const { isInitialized, isAuthenticated } = useInitialize();
+
+    const [ isWelcomeComplete ] = useLocalStorage('isWelcomeComplete', false);
+    const [ themeName, setThemeName ] = useLocalStorage<ThemesKeys>('theme', 'darkTheme');
+
     const { isCartModalExist } = useCartModal();
     const ordersLength = useOrdersFindMany().length;
-    const [ themeName, setThemeName ] = useLocalStorage<ThemesKeys>('theme', 'darkTheme');
+
+    useState(() => {
+        !isWelcomeComplete && history.push('/about-us');
+    });
 
     const theme = useMemo(() => themes[ themeName ], [ themeName ]);
 
@@ -62,6 +75,10 @@ const App: FC = () => {
                                 )
                             }
                             <Route
+                                component = { AboutUsPage }
+                                path = '/about-us'
+                            />
+                            <Route
                                 component = { ProductPage }
                                 path = '/product/:hash'
                             />
@@ -72,7 +89,8 @@ const App: FC = () => {
                         </Switch>
                         <Footer />
                     </S.AppContainer>
-                )}
+                )
+            }
         </ThemeProvider>
     );
 };

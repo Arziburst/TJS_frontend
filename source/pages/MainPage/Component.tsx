@@ -39,7 +39,14 @@ const MainPage: FC = () => {
         const isProductViewed = viewedProducts.includes(product.hash);
 
         if (productsFilterState === 'All' || productsFilterState === product.type) {
-            return [ ...acc, { ...product, isProductInCart, isProductViewed }];
+            return [
+                ...acc,
+                {
+                    ...product,
+                    isProductInCart,
+                    isProductViewed,
+                },
+            ];
         }
 
         return acc;

@@ -51,6 +51,24 @@ export default {
         }
     `,
 
+    New: styled.div`
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        padding: 3px 5px;
+        left: 5px;
+        top: 5px;
+
+        border-radius: 10px;
+        font-family: PacificoRegular;
+        background-color: ${({ theme }) => theme.themeName === 'lightTheme' ? WHITE : DEEP_GRAY};
+        color: ${({ theme }) => theme.themeName === 'lightTheme' ? DEEP_GRAY : WHITE};
+
+        @media (max-width: 420px) {
+            font-size: 20px;
+        }
+    `,
+
     DiscountContainer: styled.div`
         position: absolute;
         display: flex;
