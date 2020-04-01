@@ -7,7 +7,8 @@ import { SOURCE_DIRECTORY, BUILD_DIRECTORY } from '../constants';
 // Modules
 import * as modules from '../modules';
 
-export default () => {
+// https://webpack.js.org/configuration/
+export const getCommonConfig = () => {
     const { NODE_ENV } = process.env;
     const IS_DEVELOPMENT = NODE_ENV === 'development';
 
@@ -27,12 +28,13 @@ export default () => {
                 extensions: [ '.tsx', '.ts', '.js', '.jsx' ],
             },
         },
+        modules.defineEnvVariables(IS_DEVELOPMENT),
         modules.loadTypeScript(),
+        modules.loadGraphQL(),
         modules.loadFonts(),
-        modules.loadImages(),
-        modules.loadSvg(),
+        modules.loadAudio(),
         modules.connectHtml(),
-        modules.removeMomentLocalesPlugin(),
+        modules.filterMomentLocales(),
         modules.provideGlobals(),
     );
 };

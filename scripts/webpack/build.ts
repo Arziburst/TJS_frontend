@@ -1,14 +1,9 @@
-// 1. ✓ webpack
-// 2. ✓ конфигурация ⚙️
-// 3. ✓ создать компайлер webpack
-// 4. ✓ запуск 🚀
-
 // Core
 import webpack from 'webpack';
-import chalk from 'chalk'; // Раскрашивает консоль
+import chalk from 'chalk'; // Console Coloring
 
 // Config
-import getProdConfig from './config/webpack.prod';
+import { getProdConfig } from './config';
 
 const compiler = webpack(getProdConfig());
 
@@ -24,8 +19,8 @@ compiler.run((error, stats) => {
         // ошибка конфигурации
         console.error(error.stack || error);
 
-        if (error.details) {
-            console.error(error.details);
+        if (error.message) {
+            console.error(error.message);
         }
 
         return null;

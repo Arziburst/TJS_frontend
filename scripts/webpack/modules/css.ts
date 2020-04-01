@@ -1,7 +1,7 @@
 // Core
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const loadCss = ({ sourceMap = false } = { sourceMap: false }) => ({
+const loadCss = ({ sourceMap }: { sourceMap: boolean }) => ({
     loader:  'css-loader',
     options: {
         modules:        true,

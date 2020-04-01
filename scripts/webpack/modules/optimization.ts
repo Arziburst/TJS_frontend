@@ -1,22 +1,14 @@
-/* eslint-disable lines-around-comment */
-/* eslint-disable valid-jsdoc */
-
 // Core
-import ImageminWebpackPlugin from 'imagemin-webpack';
+import { ContextReplacementPlugin, Configuration } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
-import imageminMozjpeg from 'imagemin-mozjpeg';
-import imageminPngquant from 'imagemin-pngquant';
-import imageminSvgo from 'imagemin-svgo';
-import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
-import FontminPlugin from 'fontmin-webpack';
 
 /**
  * production — оптимизация включена только в mode: 'production'
  * development — оптимизация включена только в mode: 'development'
  * ✓ — оптимизация включена в mode: 'production' и в mode: 'development'
  */
-export const optimizeBuild = () => ({
+export const optimizeBuild = (): Configuration => ({
     optimization: {
         nodeEnv: 'production',
 
@@ -132,43 +124,48 @@ export const optimizeBuild = () => ({
     },
 });
 
-// 1. коммерческие решения
-// 2. оптимизация webpack
-export const optimizeImages = () => ({
-    plugins: [
-        new ImageminWebpackPlugin({
-            imageminOptions: {
-                plugins: [
-                    imageminMozjpeg({
-                        progressive: true,
-                        quality:     60,
-                    }),
-                    imageminPngquant({
-                        quality: 60,
-                    }),
-                    imageminSvgo(),
+export const loadImagesProd = (): Configuration => ({
+    module: {
+        rules: [
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use:  [
+                    'file-loader',
+                    {
+                        loader:  'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality:     65,
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: [ 0.65, 0.90 ],
+                                speed:   4,
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75,
+                            },
+                        },
+                    },
                 ],
             },
-        }),
-    ],
+        ],
+    },
 });
 
-export const optimizeFonts = () => ({
-    plugins: [
-        new FontminPlugin({
-            autodetect: true,
-        }),
-    ],
+// TODO: fix locales, and add filterMomentTimezones
+export const filterMomentLocales = (): Configuration => ({
+    plugins: [ new ContextReplacementPlugin(/moment\/locale$/, /(en)/) ],
 });
 
-export const removeMomentLocalesPlugin = () => ({
-    plugins: [
-        new MomentLocalesPlugin({
-            localesToKeep: [ 'en-gb', 'ru' ],
-        }),
-    ],
-});
-
-export const lodashModuleReplacement = () => ({
+export const filterLodashModules = () => ({
     plugins: [ new LodashModuleReplacementPlugin() ],
 });

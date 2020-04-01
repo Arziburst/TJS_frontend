@@ -1,29 +1,51 @@
 // Core
+import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 // Constants
-import { STATIC_DIRECTORY } from '../constants';
+import { STATIC_DIRECTORY, APP_NAME } from '../constants';
 
-export const connectHtml = () => ({
+export const connectHtml = (): Configuration => ({
     plugins: [
         new HtmlWebpackPlugin({
             template: `${STATIC_DIRECTORY}/template.html`,
-            title:    'TJS',
+            title:    APP_NAME,
             favicon:  `${STATIC_DIRECTORY}/favicon.ico`,
         }),
     ],
 });
 
-export const loadImages = () => ({
+export const loadImagesDev = (): Configuration => ({
     module: {
         rules: [
             {
-                test: /\.(png|jpg|jpeg|gif)$/,
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use:  [
+                    'file-loader',
+                    {
+                        loader:  'image-webpack-loader',
+                        // Disable optimizations
+                        options: {
+                            bypassOnDebug: true,
+                            disable:       true,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+});
+
+export const loadAudio = (): Configuration => ({
+    module: {
+        rules: [
+            {
+                test: /\.(wav|mp3)$/,
                 use:  [
                     {
                         loader:  'file-loader',
                         options: {
-                            name: 'images/[name].[hash:5].[ext]',
+                            name: 'audio/[name].[hash:5].[ext]',
                         },
                     },
                 ],
@@ -32,44 +54,7 @@ export const loadImages = () => ({
     },
 });
 
-export const loadSvg = () => ({
-    module: {
-        rules: [
-            {
-                test:   /\.svg$/,
-                issuer: {
-                    test: /\.js$/,
-                },
-                use: [
-                    '@svgr/webpack',
-                    {
-                        loader:  'file-loader',
-                        options: {
-                            name: 'images/[name].[hash:5].[ext]',
-                        },
-                    },
-                ],
-            },
-            {
-                test:   /\.svg$/,
-                issuer: {
-                    test: /\.css$/,
-                },
-                use: [
-                    {
-                        loader:  'file-loader',
-                        options: {
-                            // limit: 0,
-                            name: 'images/[name].[hash:5].[ext]',
-                        },
-                    },
-                ],
-            },
-        ],
-    },
-});
-
-export const loadFonts = () => ({
+export const loadFonts = (): Configuration => ({
     module: {
         rules: [
             {

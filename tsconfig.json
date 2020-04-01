@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "module": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
@@ -13,7 +14,6 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -25,37 +25,10 @@
       "source/@types"
     ],
   },
-  "awesomeTypescriptLoaderOptions": {
-    "useBabel": true,
-    "babelCore": "@babel/core", // needed for Babel v7
-  },
   "include": [
     "source"
   ],
-  "exclude": [ "node_modules" ]
+  "exclude": [
+    "node_modules"
+  ]
 }
-// {
-//   "compilerOptions": {
-//     "target": "es5",
-//     "lib": [
-//       "dom",
-//       "dom.iterable",
-//       "esnext"
-//     ],
-//     "allowJs": true,
-//     "skipLibCheck": true,
-//     "esModuleInterop": true,
-//     "allowSyntheticDefaultImports": true,
-//     "strict": true,
-//     "forceConsistentCasingInFileNames": true,
-//     "module": "esnext",
-//     "moduleResolution": "node",
-//     "resolveJsonModule": true,
-//     "isolatedModules": true,
-//     "noEmit": true,
-//     "jsx": "react"
-//   },
-//   "include": [
-//     "source"
-//   ]
-// }

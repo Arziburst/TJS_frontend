@@ -20,6 +20,12 @@ export const Footer: FC = () => {
                     target = '_blank'>
                     Developed by @Arziburst
                 </a>
+                <a
+                    href = 'https://www.typescriptlang.org/'
+                    rel = 'noopener noreferrer'
+                    target = '_blank'>
+                    Powered by Typescript
+                </a>
             </S.FooterCenter>
         </S.FooterContainer>
     );

@@ -2,25 +2,22 @@
 import merge from 'webpack-merge';
 
 // Configurations
-import getCommonConfig from './webpack.common';
+import { getCommonConfig } from './webpack.common';
 
 // Modules
 import * as modules from '../modules';
 
-export default () => {
+export const getProdConfig = () => {
     return merge(
         getCommonConfig(),
         {
-            mode:    'production',
+            mode:    'production', // none to remove bundle chunk size warning
             devtool: false,
         },
         modules.cleanDirectories(),
+        modules.loadImagesProd(),
         modules.connectBuildProgressIndicator(),
-        modules.loadProdCss(),
         modules.optimizeBuild(),
-        modules.optimizeImages(),
-        modules.optimizeFonts(),
         modules.connectBundleAnalyzer(),
-        modules.lodashModuleReplacement(),
     );
 };

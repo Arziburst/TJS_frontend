@@ -1,27 +1,24 @@
 // Core
 import React from 'react';
 
-// Styles
-import Styles from './styles.css';
-
 export const Loading = (props: any) => {
     const { error, timedOut, pastDelay, retry } = props;
 
     if (error) {
         return (
-            <div className = { Styles.loading }>
+            <div>
                 Error! <button onClick = { retry }>Retry</button>
             </div>
         );
     } else if (timedOut) {
         return (
-            <div className = { Styles.loading }>
+            <div>
                 Taking a long time...
                 <button onClick = { retry }>Retry</button>
             </div>
         );
     } else if (pastDelay) {
-        return <div className = { Styles.loading }>Loading...</div>;
+        return <div>Loading...</div>;
     }
 
     return null;
