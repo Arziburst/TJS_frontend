@@ -16,11 +16,14 @@ import { setViewedProductsState } from '../../../ui/actions';
 import { makeRequest } from '../../../../helpers';
 
 export function* incrementProductViews({ payload: hash }: ProductsIncrementItemViewsAsyncAction) {
-    const result = yield makeRequest<ExtendedProduct>({
+    const result: ExtendedProduct | false = yield makeRequest<ExtendedProduct>({
         fetcher:           incrementProductViewsFetcher(hash),
         successSideEffect: () => setViewedProductsState(hash),
-        fill:              editProductSync,
     });
+
+    if (result) {
+        yield put(editProductSync(result));
+    }
 
     if (process.env.NODE_ENV === 'development' && result) {
         toast.success('increment Product Views successfully!');
