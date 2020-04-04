@@ -43,8 +43,8 @@ export const createNewProductFetcher = (body: Product) => async (): Promise<Exte
     return data;
 };
 
-export const deleteProductFetcher = (hash: string) => async(): Promise<string> => {
-    const response = await fetch(`${API_ROOT}/products/${hash}`, {
+export const deleteProductFetcher = (_id: string) => async(): Promise<string> => {
+    const response = await fetch(`${API_ROOT}/products/${_id}`, {
         method:      'DELETE',
         credentials: 'include',
         headers:     {
@@ -61,8 +61,8 @@ export const deleteProductFetcher = (hash: string) => async(): Promise<string> =
     return data;
 };
 
-export const editProductFetcher = (hash: string, body: Product) => async (): Promise<ExtendedProduct> => {
-    const response = await fetch(`${API_ROOT}/products/${hash}`, {
+export const editProductFetcher = (_id: string, body: Product) => async (): Promise<ExtendedProduct> => {
+    const response = await fetch(`${API_ROOT}/products/${_id}`, {
         method:      'PUT',
         credentials: 'include',
         headers:     {
@@ -80,8 +80,8 @@ export const editProductFetcher = (hash: string, body: Product) => async (): Pro
     return data;
 };
 
-export const incrementProductViewsFetcher = (hash: string) => async (): Promise<ExtendedProduct> => {
-    const response = await fetch(`${API_ROOT}/products/incrementViews/${hash}`, {
+export const incrementProductViewsFetcher = (_id: string) => async (): Promise<ExtendedProduct> => {
+    const response = await fetch(`${API_ROOT}/products/incrementViews/${_id}`, {
         method:      'POST',
         credentials: 'include',
         headers:     {

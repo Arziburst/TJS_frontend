@@ -15,7 +15,7 @@ export const productsReducer: Reducer<Products, ProductsActionTypes> = (state = 
 
         case types.PRODUCTS_EDIT_ITEM_SYNC:
             return state.map((product) => {
-                if (product.hash === action.payload.hash) {
+                if (product._id === action.payload._id) {
                     return {
                         ...product,
                         ...action.payload,
@@ -26,7 +26,7 @@ export const productsReducer: Reducer<Products, ProductsActionTypes> = (state = 
             });
 
         case types.PRODUCTS_DELETE_ITEM_SYNC:
-            return state.filter(({ hash }) => hash !== action.payload);
+            return state.filter(({ _id }) => _id !== action.payload);
 
         default:
             return state;

@@ -80,7 +80,7 @@ const App: FC = () => {
                             />
                             <Route
                                 component = { ProductPage }
-                                path = '/product/:hash'
+                                path = '/product/:_id'
                             />
                             <Route
                                 component = { MainPage }

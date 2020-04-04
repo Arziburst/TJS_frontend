@@ -46,9 +46,9 @@ export const createOrderFetcher = (body: CreateOrderBody) => async (): Promise<O
 };
 
 export const editOrderFetcher = (
-    { body, hash }: { body: EditOrderBody, hash: string },
+    { body, _id }: { body: EditOrderBody, _id: string },
 ) => async (): Promise<Order> => {
-    const response = await fetch(`${API_ROOT}/orders/${hash}`, {
+    const response = await fetch(`${API_ROOT}/orders/${_id}`, {
         method:      'PUT',
         credentials: 'include',
         headers:     {

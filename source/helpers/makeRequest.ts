@@ -11,7 +11,7 @@ import { TogglersKeys } from '../bus/togglers';
 import { togglerCreatorAction } from '../bus/togglers';
 
 type OptionsType<T> = {
-    fetcher: (hash?: string) => Promise<T>;
+    fetcher: (_id?: string) => Promise<T>;
     togglerType?: TogglersKeys;
     fill?: (payload: T) => {
         type: string;

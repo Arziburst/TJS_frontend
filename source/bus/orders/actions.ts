@@ -20,11 +20,11 @@ export const createOrderSync = (order: types.Order): types.OrdersCreateItemSyncA
     payload: order,
 });
 
-export const editOrderAsync = (body: types.EditOrderBody, hash: string): types.OrdersEditItemAsyncAction => ({
+export const editOrderAsync = (body: types.EditOrderBody, _id: string): types.OrdersEditItemAsyncAction => ({
     type:    types.ORDERS_EDIT_ITEM_ASYNC,
     payload: {
         body,
-        hash,
+        _id,
     },
 });
 

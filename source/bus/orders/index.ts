@@ -24,14 +24,14 @@ export const useOrderEdit = () => {
     const dispatch = useDispatch();
 
     return {
-        editOrderAsync:  (body: EditOrderBody, hash: string) => dispatch(editOrderAsync(body, hash)),
+        editOrderAsync:  (body: EditOrderBody, _id: string) => dispatch(editOrderAsync(body, _id)),
         isOrderFetching: useSelectorTogglers().isOrderFetching,
     };
 };
 
 export const useOrdersFindMany = () => useSelector(({ orders }) => orders);
 
-export const useOrdersFindOneByHash = (hash: string) => useSelector<Order | undefined>(({ orders }) => {
-    return orders.find((order) => order.hash === hash);
+export const useOrdersFindOneByid = (_id: string) => useSelector<Order | undefined>(({ orders }) => {
+    return orders.find((order) => order._id === _id);
 });
 

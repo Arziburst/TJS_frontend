@@ -11,9 +11,9 @@ export type Product = {
 
 export type ExtendedProduct = Product & {
     views: number;
-    isNew: boolean;
+    isProductNew: boolean;
     created: string;
-    hash: string;
+    _id: string;
 };
 
 export type Products = ExtendedProduct[];
@@ -48,7 +48,7 @@ export const PRODUCTS_EDIT_ITEM_ASYNC = 'PRODUCTS_EDIT_ITEM_ASYNC';
 export type ProductsEditItemAsyncAction = {
     type: typeof PRODUCTS_EDIT_ITEM_ASYNC;
     payload: {
-        productHash: string;
+        _id: string;
         editedProduct: Product;
     };
 };

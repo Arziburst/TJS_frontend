@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 // Hooks
 import { useForm, useImagesForm } from '../../hooks';
-import { useProductsActions, useProductsFindOneByHash } from '../../bus/products';
+import { useProductsActions, useProductsFindOneById } from '../../bus/products';
 
 // Components
 import { Modal } from '../index';
@@ -40,13 +40,14 @@ type PropTypes = {
 
 export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
     const { t } = useTranslation();
-    const { hash: hashFromUrl } = useParams<{ hash: string }>();
+    const { _id: _idFromUrl } = useParams<{ _id: string }>();
     const { createNewProductAsync, editProductAsync, deleteProductAsync, toggler } = useProductsActions();
     const [ galleryPopupState, setGalleryPopupState ] = useState<boolean>(false);
     const [ form, setForm, setNewInnitialValuesForm ] = useForm<FormTypes>(formInnitialState);
-    const [ imageForm, setImageForm, setInnitialValuesImageForm ] = useImagesForm([]);
+    // TODO 
+    const [imageForm, setImageForm, setInnitialValuesImageForm] = useImagesForm([]);
 
-    const product = useProductsFindOneByHash(hashFromUrl);
+    const product = useProductsFindOneById(_idFromUrl);
 
     useEffect(() => {
         if (!product) {
@@ -82,7 +83,7 @@ export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
         images: imageForm,
     });
 
-    const editProductHandler = () => validation && void editProductAsync(hashFromUrl, {
+    const editProductHandler = () => validation && void editProductAsync(_idFromUrl, {
         ...form,
         images: imageForm,
     });
@@ -91,7 +92,7 @@ export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
         // eslint-disable-next-line no-alert
         const isConfirmed = window.confirm(t('ProductModal.deleteConfirm'));
         if (isConfirmed) {
-            deleteProductAsync(hashFromUrl);
+            deleteProductAsync(_idFromUrl);
         }
     };
 
@@ -195,7 +196,7 @@ export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
                     {t('ProductModal.gallery')}
                 </Button>
                 {
-                    hashFromUrl && product
+                    _idFromUrl && product
                         ? (
                             <>
                                 <Button

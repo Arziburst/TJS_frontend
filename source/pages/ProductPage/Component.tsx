@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 // Hooks
 import { useSelectorTogglers } from '../../bus/togglers';
 import { useSelectorCart } from '../../bus/cart';
-import { useProductsFindOneByHash } from '../../bus/products';
+import { useProductsFindOneById } from '../../bus/products';
 import { useSelectorUi } from '../../bus/ui';
 
 // Actions
@@ -24,16 +24,16 @@ import S from './styles';
 const ProductPage = () => {
     const { t } = useTranslation();
     const history = useHistory();
-    const { hash: hashFromUrl } = useParams<{ hash: string }>();
+    const { _id: _idFromUrl } = useParams<{ _id: string }>();
     const incrementProductViewsAsync = useIncrementProductViews();
     const isProductsFetching = useSelectorTogglers().isProductsFetching;
     const cart = useSelectorCart();
-    const isProductInCart = cart.includes(hashFromUrl);
-    const product = useProductsFindOneByHash(hashFromUrl);
-    const isProductViewed = useSelectorUi().viewedProducts.includes(hashFromUrl);
+    const isProductInCart = cart.includes(_idFromUrl);
+    const product = useProductsFindOneById(_idFromUrl);
+    const isProductViewed = useSelectorUi().viewedProducts.includes(_idFromUrl);
 
     useEffect(() => {
-        hashFromUrl && product && !isProductViewed && incrementProductViewsAsync(hashFromUrl);
+        _idFromUrl && product && !isProductViewed && incrementProductViewsAsync(_idFromUrl);
     }, []);
 
     if (isProductsFetching) {

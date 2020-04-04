@@ -11,7 +11,7 @@ import { OrderItem } from './OrderItem';
 
 // Hooks
 import { useStatusForm } from '../../hooks';
-import { useOrderEdit, useOrdersFindOneByHash } from '../../bus/orders';
+import { useOrderEdit, useOrdersFindOneByid } from '../../bus/orders';
 import { useSelectorProfile } from '../../bus/profile';
 
 // Helpers
@@ -26,8 +26,8 @@ import S from './styles';
 export const OrderModal: FC = () => {
     const history = useHistory();
     const { t, i18n } = useTranslation();
-    const { hash: hashFromUrl } = useParams<{ hash: string }>();
-    const order = useOrdersFindOneByHash(hashFromUrl);
+    const { _id: _idFromUrl } = useParams<{ _id: string }>();
+    const order = useOrdersFindOneByid(_idFromUrl);
     const { editOrderAsync, isOrderFetching } = useOrderEdit();
     const [ status, setStatus ] = useStatusForm(order ? order.status : 0);
     const isAdmin = useSelectorProfile().role === 'admin';
@@ -48,7 +48,7 @@ export const OrderModal: FC = () => {
                     {
                         orderedProducts.map((orderedProduct) => (
                             <OrderItem
-                                key = { orderedProduct.hash }
+                                key={ `orderedProduct-${orderedProduct.pid}`  }
                                 { ...orderedProduct }
                             />
                         ))
@@ -106,7 +106,7 @@ export const OrderModal: FC = () => {
                         isAdmin && (
                             <Button
                                 disabled = { isOrderFetching }
-                                onClick = { () => editOrderAsync({ status }, hashFromUrl) }>
+                                onClick = { () => editOrderAsync({ status }, _idFromUrl) }>
                                 { isOrderFetching ? t('OrderModal.loading') : t('OrderModal.save') }
                             </Button>
                         )

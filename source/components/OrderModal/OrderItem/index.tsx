@@ -8,13 +8,13 @@ import S from './styles';
 
 type PropTypes = {
     image: string;
-    hash: string;
+    pid: string;
     price: number;
 };
 
-export const OrderItem: FC<PropTypes> = memo(({ image, hash, price }) => (
+export const OrderItem: FC<PropTypes> = memo(({ image, pid, price }) => (
     <S.OrderImageContainer>
-        <Link to = { `/product/${hash}` }>
+        <Link to = { `/product/${pid}` }>
             <img src = { image } />
         </Link>
         <S.Price>

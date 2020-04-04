@@ -35,8 +35,8 @@ const MainPage: FC = () => {
     const cart = useSelectorCart();
 
     const reducedProductsHandler = products.reduce((acc: ReducedProducts, product: ExtendedProduct) => {
-        const isProductInCart = cart.includes(product.hash);
-        const isProductViewed = viewedProducts.includes(product.hash);
+        const isProductInCart = cart.includes(product._id);
+        const isProductViewed = viewedProducts.includes(product._id);
 
         if (productsFilterState === 'All' || productsFilterState === product.type) {
             return [
@@ -69,7 +69,7 @@ const MainPage: FC = () => {
                                 render = { () => <ProductModal headerTitle = { t('ProductModal.headerTitleCreateNewProduct') } /> }
                             />
                             <Route
-                                path = '/edit-product/:hash'
+                                path = '/edit-product/:_id'
                                 render = { () => <ProductModal headerTitle = { t('ProductModal.headerTitleEditProduct') } /> }
                             />
                         </>

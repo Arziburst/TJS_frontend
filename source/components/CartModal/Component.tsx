@@ -62,8 +62,8 @@ const CartModal: FC = () => {
         removeFromCart(deleteHash);
     };
 
-    const { total, cartJSX } = cart.reduce((acc, productHash) => {
-        const product = products.find(({ hash }) => hash === productHash);
+    const { total, cartJSX } = cart.reduce((acc, productId) => {
+        const product = products.find(({ _id }) => _id === productId);
 
         if (!product) {
             return acc;
@@ -71,10 +71,10 @@ const CartModal: FC = () => {
 
         const cartItemJSX = (
             <CartItem
-                key = { productHash }
+                key = { productId }
                 { ...product }
                 closeCartModal = { () => setCartModalState(false) }
-                removeHandler = { (event: Event) => removeHandler(event, productHash) }
+                removeHandler = { (event: Event) => removeHandler(event, productId) }
             />
         );
 
@@ -92,7 +92,7 @@ const CartModal: FC = () => {
     const phoneValidation = /^\+\d{2}\d{3}\d{3}\d{2}\d{2}$/.test(form.phone);
     const validation = phoneValidation;
 
-    const createOrderHandler = () => validation && void createOrderAsync({ ...form, orderedProducts: cart });
+    const createOrderHandler = () => validation && void createOrderAsync({ ...form, orderedPIDs: cart });
 
     return (
         <Modal closeHandler = { () => setCartModalState(false) }>

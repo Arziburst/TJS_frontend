@@ -1,5 +1,5 @@
 // Core
-// import { put } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { toast } from 'react-toastify';
 
@@ -15,15 +15,15 @@ import { deleteProductFetcher } from '../../../../api';
 // Instruments
 import { makeRequest } from '../../../../helpers';
 
-export function* deleteProduct({ payload: productHash }: ProductsDeleteItemAsyncAction) {
-    const hash: string | undefined = yield makeRequest<string>({
-        fetcher:           deleteProductFetcher(productHash),
+export function* deleteProduct({ payload: product_id }: ProductsDeleteItemAsyncAction) {
+    const _id: string | undefined = yield makeRequest<string>({
+        fetcher:           deleteProductFetcher(product_id),
         togglerType:       'isProductFetching',
-        fill:              deleteProductSync,
         successSideEffect: () => push('/'),
     });
-
-    if (hash) {
+    
+    if (_id) {
+        yield put(deleteProductSync(_id))
         toast.success('Product deleted successfully!');
     }
 }

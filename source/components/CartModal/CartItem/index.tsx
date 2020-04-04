@@ -18,16 +18,16 @@ type PropTypes = {
     price: number;
     discount: number;
     removeHandler: (event: Event) => void;
-    hash: string;
+    _id: string;
     closeCartModal: () => void;
 }
 
-export const CartItem: FC<PropTypes> = memo(({ images, price, discount, removeHandler, hash, closeCartModal }) => {
+export const CartItem: FC<PropTypes> = memo(({ images, price, discount, removeHandler, _id, closeCartModal }) => {
     const result = discountHandler(price, discount);
 
     return (
         <S.CartItemContainer onClick = { closeCartModal }>
-            <Link to = { `/product/${hash}` }>
+            <Link to = { `/product/${_id}` }>
                 <img src = { images[ 0 ] } />
             </Link>
             <S.Price>

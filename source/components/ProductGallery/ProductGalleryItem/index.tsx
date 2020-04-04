@@ -12,7 +12,7 @@ import S from './styles';
 import { appSvg } from '../../../assets';
 
 type PropTypes = {
-    hash: string,
+    _id: string,
     previewImage: string,
     redirectHandler: Function,
     role: string,
@@ -25,11 +25,11 @@ type PropTypes = {
     price: number,
     views: number,
     discount: number,
-    isNew: boolean,
+    isProductNew: boolean,
 }
 
 export const ProductGalleryItem: FC<PropTypes> = memo(({
-    hash = '',
+    _id = '',
     previewImage = '',
     redirectHandler,
     role = 'customer',
@@ -42,20 +42,20 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
     price = 1000,
     views = 0,
     discount = 0,
-    isNew = false,
+    isProductNew = false,
 }) => {
     const { t } = useTranslation();
     const result = discountHandler(price, discount);
 
     return (
-        <S.ProductContainer onClick = { () => redirectHandler(hash) }>
+        <S.ProductContainer onClick = { () => redirectHandler(_id) }>
             <S.Hover>
                 <h1>{t('ProductGalleryItem.tapToOpen')}</h1>
                 {
                     role === 'admin' && (
                         <S.EditButton onClick = { (event) => {
                             stopPropagation(event);
-                            editProductRedirectHandler(hash);
+                            editProductRedirectHandler(_id);
                         } }>
                             {appSvg.editProductIcon()}
                         </S.EditButton>
@@ -65,7 +65,7 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
                     !isProductInCart && (
                         <S.AddToCartButton onClick = { (event) => {
                             stopPropagation(event);
-                            addToCart(hash);
+                            addToCart(_id);
                         } }>
                             {appSvg.cartIcon()}
                         </S.AddToCartButton>
@@ -81,7 +81,7 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
                 }
             </S.Hover>
             {
-                isNew && (
+                isProductNew && (
                     <S.New>
                         {t('ProductGalleryItem.new')}!
                     </S.New>
@@ -98,7 +98,7 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
                 isProductInCart && (
                     <S.AddToCartButton onClick = { (event) => {
                         stopPropagation(event);
-                        removeFromCart(hash);
+                        removeFromCart(_id);
                     } }>
                         {appSvg.crossIcon()}
                     </S.AddToCartButton>

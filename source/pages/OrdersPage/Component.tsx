@@ -36,7 +36,7 @@ const OrdersPage = () => {
         <S.OrdersContainer>
             <Switch>
                 <Route
-                    path = '/orders/:hash'
+                    path = '/orders/:_id'
                     render = { () => (
                         <OrderModal />
                     ) }
