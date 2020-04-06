@@ -1,6 +1,5 @@
 export type OrderedProduct = {
-    _id: string;
-    hash: string;
+    pid: string;
     image: string;
     price: number;
 }
@@ -9,13 +8,13 @@ export type OrderedProducts = Array<OrderedProduct>;
 
 export type Order = {
     total: number;
-    email: string;
-    comment: string;
+    email?: string;
+    comment?: string;
     status: number;
     phone: string;
     orderedProducts: OrderedProducts;
     created: Date;
-    hash: string;
+    _id: string;
 };
 
 export type Orders = Array<Order>;
@@ -23,7 +22,7 @@ export type Orders = Array<Order>;
 export type CreateOrderBody = {
     phone: string;
     comment: string;
-    orderedProducts: Array<string>;
+    orderedPIDs: Array<string>;
 }
 
 export type EditOrderBody = {
@@ -61,7 +60,7 @@ export type OrdersEditItemAsyncAction = {
     type: typeof ORDERS_EDIT_ITEM_ASYNC;
     payload: {
         body: EditOrderBody;
-        hash: string;
+        _id: string;
     };
 };
 

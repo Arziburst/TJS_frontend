@@ -23,11 +23,11 @@ export const useProductsActions = () => {
         createNewProductAsync: (body: Product) => dispatch(createNewProductAsync(body)),
 
         editProductAsync: (
-            productHash: string,
+            productId: string,
             editedProduct: Product,
-        ) => dispatch(editProductAsync(productHash, editedProduct)),
+        ) => dispatch(editProductAsync(productId, editedProduct)),
 
-        deleteProductAsync: (producthash: string) => dispatch(deleteProductAsync(producthash)),
+        deleteProductAsync: (productId: string) => dispatch(deleteProductAsync(productId)),
 
         toggler: useSelectorTogglers().isProductFetching,
     };
@@ -36,9 +36,9 @@ export const useProductsActions = () => {
 export const useIncrementProductViews = () => {
     const dispatch = useDispatch();
 
-    return (productHash: string) => dispatch(incrementProductViewsAsync(productHash));
+    return (productId: string) => dispatch(incrementProductViewsAsync(productId));
 };
 
 export const useProductsFindMany = () => useSelector(({ products }) => products);
 
-export const useProductsFindOneByHash = (hash: string) => useProductsFindMany().find((product) => product.hash === hash);
+export const useProductsFindOneById = (_id: string) => useProductsFindMany().find((product) => product._id === _id);

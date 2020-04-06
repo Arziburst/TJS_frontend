@@ -25,7 +25,7 @@ type PropTypes = {
     weight: number;
     available: boolean;
     isProductInCart: boolean;
-    hash: string;
+    _id: string;
 }
 
 export const ProductInfo: FC<PropTypes> = (props) => {
@@ -79,7 +79,7 @@ export const ProductInfo: FC<PropTypes> = (props) => {
                         backgroundColor: PINK,
                         color:           WHITE,
                     }) }
-                    onClick = { () => addToCart(props.hash) }>
+                    onClick = { () => addToCart(props._id) }>
                     {
                         props.isProductInCart
                             ? t('ProductInfo.inCart')

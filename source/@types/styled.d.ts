@@ -6,6 +6,5 @@ import 'styled-components';
 import { DefaultLightTheme } from '../theme';
 
 declare module 'styled-components' {
-    export interface DefaultTheme extends DefaultLightTheme {
-    }
+    export interface DefaultTheme extends DefaultLightTheme {}
 }

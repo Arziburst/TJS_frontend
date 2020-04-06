@@ -19,7 +19,7 @@ type PropTypes = {
 export const OrdersGallery: FC<PropTypes> = ({ reducedOrders }) => {
     const history = useHistory();
 
-    const redirectHandler = (hash: string) => history.push(`/orders/${hash}`);
+    const redirectHandler = (_id: string) => history.push(`/orders/${_id}`);
 
     return (
         <S.MasonryContainer>
@@ -30,7 +30,7 @@ export const OrdersGallery: FC<PropTypes> = ({ reducedOrders }) => {
                     {
                         reducedOrders.map((order) => (
                             <OrdersGalleryItem
-                                key = { order.hash }
+                                key = { order._id }
                                 { ...order }
                                 redirectHandler = { redirectHandler }
                             />

@@ -30,13 +30,13 @@ export function* fetchProducts() {
         return;
     }
 
-    const productsHashs = result.map(({ hash }) => hash);
+    const productsIds = result.map(({ _id }) => _id);
     const viewedProducts: Array<string> = localStorage.get('viewedProducts') || [];
     const cart: Array<string> = localStorage.get('cart') || [];
 
     // Checking viewedProducts
     if (viewedProducts && viewedProducts.length !== 0) {
-        const { isAllStringsExists, newArray } = arrayСomparison(productsHashs, viewedProducts);
+        const { isAllStringsExists, newArray } = arrayСomparison(productsIds, viewedProducts);
 
         if (!isAllStringsExists) {
             yield localStorage.set('viewedProducts', newArray);
@@ -47,7 +47,7 @@ export function* fetchProducts() {
 
     // Checkind cart
     if (cart && cart.length !== 0) {
-        const { isAllStringsExists, newArray } = arrayСomparison(productsHashs, cart);
+        const { isAllStringsExists, newArray } = arrayСomparison(productsIds, cart);
 
         if (!isAllStringsExists) {
             yield localStorage.set('cart', newArray);

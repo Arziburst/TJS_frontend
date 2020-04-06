@@ -35,8 +35,8 @@ export const ProductGallery: FC<PropTypes> = ({ products, role }) => {
         event.nativeEvent.stopImmediatePropagation();
     };
 
-    const redirectHandler = (hash: string) => history.push(`/product/${hash}`);
-    const editProductRedirectHandler = (hash: string) => history.push(`/edit-product/${hash}`);
+    const redirectHandler = (_id: string) => history.push(`/product/${_id}`);
+    const editProductRedirectHandler = (_id: string) => history.push(`/edit-product/${_id}`);
 
     return (
         <S.MasonryContainer>
@@ -57,7 +57,7 @@ export const ProductGallery: FC<PropTypes> = ({ products, role }) => {
                                 { ...product }
                                 addToCart = { addToCart }
                                 editProductRedirectHandler = { editProductRedirectHandler }
-                                key = { product.hash }
+                                key = { product._id }
                                 previewImage = { product.images[ 0 ] }
                                 redirectHandler = { redirectHandler }
                                 removeFromCart = { removeFromCart }

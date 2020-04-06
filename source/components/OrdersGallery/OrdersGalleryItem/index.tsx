@@ -15,9 +15,9 @@ type PropTypes = {
     status: number;
     total: number;
     created: Date;
-    hash: string,
+    _id: string,
     images: Array<string>,
-    redirectHandler: (hash: string) => void,
+    redirectHandler: (_id: string) => void,
 }
 
 export const OrdersGalleryItem: FC<PropTypes> = memo(({
@@ -25,7 +25,7 @@ export const OrdersGalleryItem: FC<PropTypes> = memo(({
     status,
     total,
     created,
-    hash,
+    _id,
     images,
     redirectHandler,
 }) => {
@@ -42,7 +42,7 @@ export const OrdersGalleryItem: FC<PropTypes> = memo(({
 
     return (
         <S.OrderContainer>
-            <S.Hover onClick = { () => redirectHandler(hash) }>
+            <S.Hover onClick = { () => redirectHandler(_id) }>
                 <span>{t('OrdersGalleryItem.tapToOpen')}</span>
             </S.Hover>
             <S.Created>

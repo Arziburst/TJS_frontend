@@ -15,10 +15,10 @@ import { setViewedProductsState } from '../../../ui/actions';
 // Instruments
 import { makeRequest } from '../../../../helpers';
 
-export function* incrementProductViews({ payload: hash }: ProductsIncrementItemViewsAsyncAction) {
+export function* incrementProductViews({ payload: _id }: ProductsIncrementItemViewsAsyncAction) {
     const result: ExtendedProduct | false = yield makeRequest<ExtendedProduct>({
-        fetcher:           incrementProductViewsFetcher(hash),
-        successSideEffect: () => setViewedProductsState(hash),
+        fetcher:           incrementProductViewsFetcher(_id),
+        successSideEffect: () => setViewedProductsState(_id),
     });
 
     if (result) {

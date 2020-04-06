@@ -24,11 +24,11 @@ export const createNewProductSync = (payload: types.ExtendedProduct): types.Prod
 
 // EDIT
 export const editProductAsync = (
-    productHash: string, editedProduct: types.Product,
+    _id: string, editedProduct: types.Product,
 ): types.ProductsEditItemAsyncAction => ({
     type:    types.PRODUCTS_EDIT_ITEM_ASYNC,
     payload: {
-        productHash,
+        _id,
         editedProduct,
     },
 });
@@ -39,18 +39,18 @@ export const editProductSync = (editedProduct: types.ExtendedProduct): types.Pro
 });
 
 // DELETE
-export const deleteProductAsync = (productHash: string): types.ProductsDeleteItemAsyncAction => ({
+export const deleteProductAsync = (_id: string): types.ProductsDeleteItemAsyncAction => ({
     type:    types.PRODUCTS_DELETE_ITEM_ASYNC,
-    payload: productHash,
+    payload: _id,
 });
 
-export const deleteProductSync = (productHash: string): types.ProductsDeleteItemSyncAction => ({
+export const deleteProductSync = (_id: string): types.ProductsDeleteItemSyncAction => ({
     type:    types.PRODUCTS_DELETE_ITEM_SYNC,
-    payload: productHash,
+    payload: _id,
 });
 
 // ADDITIONAL
-export const incrementProductViewsAsync = (productHash: string): types.ProductsIncrementItemViewsAsyncAction => ({
+export const incrementProductViewsAsync = (_id: string): types.ProductsIncrementItemViewsAsyncAction => ({
     type:    types.PRODUCTS_INCREMENT_ITEM_VIEWS_ASYNC,
-    payload: productHash,
+    payload: _id,
 });
