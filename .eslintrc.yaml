@@ -31,8 +31,6 @@ globals:
 
 plugins:
     - react
-    - jest
-    - babel
     - react-hooks
     - import
     - "@typescript-eslint"
@@ -452,14 +450,7 @@ rules:
     arrow-body-style: 0
     arrow-parens: [2, 'always']
 
-        # Babel
-    babel/no-invalid-this: 0
-    babel/quotes:
-        - 2
-        - single
-    babel/new-cap: 0
-
-        # TypeScript
+    # TypeScript
     # "@typescript-eslint/no-unused-vars-experimental": 2
     "@typescript-eslint/no-unused-vars": 2
     "@typescript-eslint/indent":
