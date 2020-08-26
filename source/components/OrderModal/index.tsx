@@ -48,7 +48,7 @@ export const OrderModal: FC = () => {
                     {
                         orderedProducts.map((orderedProduct) => (
                             <OrderItem
-                                key={ `orderedProduct-${orderedProduct.pid}`  }
+                                key = { `orderedProduct-${orderedProduct.pid}`  }
                                 { ...orderedProduct }
                             />
                         ))

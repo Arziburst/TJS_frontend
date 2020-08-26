@@ -55,8 +55,8 @@ export default {
         z-index: 3;
         padding: 10px;
         ${({ theme }) => theme.themeName === 'lightTheme'
-        ? { background: 'linear-gradient(to bottom, rgba(235, 92, 120, 1) 0%, rgba(235, 95, 123, 1) 1%, rgba(225, 225, 225, 1) 50%, rgba(225, 225, 225, 1) 100%)'}
-        : { backgroundColor: '#e1e1e1'}};
+        ? { background: 'linear-gradient(to bottom, rgba(235, 92, 120, 1) 0%, rgba(235, 95, 123, 1) 1%, rgba(225, 225, 225, 1) 50%, rgba(225, 225, 225, 1) 100%)' }
+        : { backgroundColor: '#e1e1e1' }};
 
         border-top-left-radius: 5px;
         border-bottom-right-radius: 5px;

@@ -1,6 +1,5 @@
 // Core
 import { ActionCreator, AnyAction } from 'redux';
-import { SagaIterator } from '@redux-saga/core';
 import { put, call } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 

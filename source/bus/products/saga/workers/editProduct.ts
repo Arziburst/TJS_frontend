@@ -15,7 +15,7 @@ import { editProductSync } from '../../actions';
 // Instruments
 import { makeRequest } from '../../../../helpers';
 
-export function* editProduct({ payload: { _id, editedProduct } }: ProductsEditItemAsyncAction) {
+export function* editProduct({ payload: { _id, editedProduct }}: ProductsEditItemAsyncAction) {
     const result: ExtendedProduct | undefined = yield makeRequest<ExtendedProduct>({
         fetcher:           editProductFetcher(_id, editedProduct),
         togglerType:       'isProductFetching',

@@ -45,7 +45,7 @@ const ProductPage = () => {
             <nav>
                 <Button onClick = { () => history.push('/') }>{t('ProductPage.toMainPage')}</Button>
                 <h1>{product ? product.title : 'No such product exist'}</h1>
-                <div style = {{width: '110px'}} />
+                <div style = {{ width: '110px' }} />
             </nav>
             {
                 product && (

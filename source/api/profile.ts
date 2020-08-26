@@ -49,7 +49,6 @@ export const login = (email: string, password: string) => async (): Promise<Prof
         method:      'POST',
         credentials: 'include',
         headers:     {
-
             'Content-Type': 'application/json',
             Authorization:  `Basic ${email}:${password}`,
         },

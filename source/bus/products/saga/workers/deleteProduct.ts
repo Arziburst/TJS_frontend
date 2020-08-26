@@ -21,9 +21,9 @@ export function* deleteProduct({ payload: product_id }: ProductsDeleteItemAsyncA
         togglerType:       'isProductFetching',
         successSideEffect: () => push('/'),
     });
-    
+
     if (_id) {
-        yield put(deleteProductSync(_id))
+        yield put(deleteProductSync(_id));
         toast.success('Product deleted successfully!');
     }
 }

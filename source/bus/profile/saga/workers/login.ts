@@ -16,7 +16,7 @@ import { login } from '../../../../api';
 // Instruments
 import { makeRequest } from '../../../../helpers';
 
-export function* callLoginWorker({ payload: { email, password } }: LoginAsyncAction) {
+export function* callLoginWorker({ payload: { email, password }}: LoginAsyncAction) {
     const result = yield makeRequest<ProfileState>({
         fetcher:           login(email, password),
         togglerType:       'isProfileFetching',

@@ -14,8 +14,8 @@ export const arrayСomparison: ArrayСomparison = (arrayOfStrings, checkedArray)
     }
 
     if (isStringExistInArrayOfStrings) {
-        temp = { ...temp, newArray: [ ...acc.newArray, string ] };
+        temp = { ...temp, newArray: [ ...acc.newArray, string ]};
     }
 
     return { ...acc, ...temp };
-}, <Result>{ isAllStringsExists: true, newArray: [] });
+}, <Result>{ isAllStringsExists: true, newArray: []});

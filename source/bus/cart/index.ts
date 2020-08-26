@@ -17,4 +17,4 @@ export const useCartActions = () => {
     };
 };
 
-export const useSelectorCart = () => useSelector(({cart}) => cart);
+export const useSelectorCart = () => useSelector(({ cart }) => cart);

@@ -27,7 +27,7 @@ export type CreateOrderBody = {
 
 export type EditOrderBody = {
     status: number;
- };
+};
 
 // FETCH & FILL
 export const ORDERS_FETCH_ASYNC = 'ORDERS_FETCH_ASYNC';

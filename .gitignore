@@ -30,3 +30,4 @@ logs/
 
 # env
 .env
+.env.production

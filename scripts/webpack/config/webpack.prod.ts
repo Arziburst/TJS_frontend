@@ -19,5 +19,6 @@ export const getProdConfig = () => {
         modules.connectBuildProgressIndicator(),
         modules.optimizeBuild(),
         modules.connectBundleAnalyzer(),
+        modules.generateServiceWorker(),
     );
 };

@@ -6,7 +6,9 @@ import * as types from './types';
 
 const initialState: Orders = [];
 
-export const ordersReducer: Reducer<Orders, OrdersActionTypes | ResetToInitialStateAction> = (state = initialState, action) => {
+export const ordersReducer: Reducer<Orders, OrdersActionTypes | ResetToInitialStateAction> = (
+    state = initialState, action,
+) => {
     switch (action.type) {
         case types.ORDERS_FILL:
             return action.payload;

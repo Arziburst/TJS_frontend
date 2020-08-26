@@ -44,8 +44,8 @@ export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
     const { createNewProductAsync, editProductAsync, deleteProductAsync, toggler } = useProductsActions();
     const [ galleryPopupState, setGalleryPopupState ] = useState<boolean>(false);
     const [ form, setForm, setNewInnitialValuesForm ] = useForm<FormTypes>(formInnitialState);
-    // TODO 
-    const [imageForm, setImageForm, setInnitialValuesImageForm] = useImagesForm([]);
+    // TODO
+    const [ imageForm, setImageForm, setInnitialValuesImageForm ] = useImagesForm([]);
 
     const product = useProductsFindOneById(_idFromUrl);
 
