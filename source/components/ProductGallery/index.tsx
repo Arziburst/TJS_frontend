@@ -11,6 +11,7 @@ import { ProductGalleryItem } from './ProductGalleryItem';
 
 // Hooks
 import { useCartActions } from '../../bus/cart';
+import { useLoadedProducts } from '../../bus/ui';
 
 // Styles
 import S from './styles';
@@ -28,6 +29,7 @@ type PropTypes = {
 
 export const ProductGallery: FC<PropTypes> = ({ products, role }) => {
     const history = useHistory();
+    const { setLoadedProductId } = useLoadedProducts();
     const { addToCart, removeFromCart } = useCartActions();
 
     const stopPropagation = (event: any) => {
@@ -63,6 +65,7 @@ export const ProductGallery: FC<PropTypes> = ({ products, role }) => {
                                 removeFromCart = { removeFromCart }
                                 role = { role }
                                 stopPropagation = { stopPropagation }
+                                onLoad = { () => void setLoadedProductId(product._id) }
                             />
                         ))
                     }

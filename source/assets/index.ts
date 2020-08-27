@@ -1,4 +1,5 @@
 export * from './svg';
+export * from './icons';
 
 // Fonts import
 import PacificoRegular from './fonts/Pacifico-Regular.ttf';

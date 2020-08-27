@@ -15,7 +15,12 @@ import { store, history, persistor } from './init/store';
 import './init/i18n';
 
 // App
-import App from './containers/App';
+import { App } from './containers';
+
+// Assets
+import { initIconsLibrary } from './assets';
+
+initIconsLibrary();
 
 render(
     <Provider store = { store }>

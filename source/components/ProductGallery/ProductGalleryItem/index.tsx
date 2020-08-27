@@ -26,6 +26,7 @@ type PropTypes = {
     views: number,
     discount: number,
     isProductNew: boolean,
+    onLoad: Function
 }
 
 export const ProductGalleryItem: FC<PropTypes> = memo(({
@@ -43,6 +44,7 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
     views = 0,
     discount = 0,
     isProductNew = false,
+    onLoad,
 }) => {
     const { t } = useTranslation();
     const result = discountHandler(price, discount);
@@ -116,7 +118,10 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
                 {discount > 0 && <span>{price} ₴</span>}
                 <p>{result} ₴</p>
             </S.Price>
-            <img src = { previewImage } />
+            <img
+                src = { previewImage }
+                onLoad = { () => void onLoad() }
+            />
         </S.ProductContainer>
     );
 });

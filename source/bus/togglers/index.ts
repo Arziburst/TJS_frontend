@@ -2,15 +2,16 @@ import { Reducer } from 'redux';
 import { useSelector } from '../../hooks';
 
 const initialState = {
-    isInitialized:      false,
-    isAuthenticated:    false,
-    isProfileFetching:  true,
-    isProductsFetching: true,
-    isProductFetching:  false,
-    isOrdersFetching:   false,
-    isOrderFetching:    false,
-    isGalleryFetching:  false,
-    isGalleryUpdating:  false,
+    isInitialized:       false,
+    isAuthenticated:     false,
+    isProfileFetching:   true,
+    isProductsFetching:  true,
+    isProductFetching:   false,
+    isOrdersFetching:    false,
+    isOrderFetching:     false,
+    isGalleryFetching:   false,
+    isGalleryUpdating:   false,
+    isAllProductsLoaded: false,
 };
 
 type TogglersState = typeof initialState;

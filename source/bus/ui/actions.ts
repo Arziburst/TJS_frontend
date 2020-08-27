@@ -23,6 +23,16 @@ export const setInitialViewedProductsState = (
     payload: viewedProducts,
 });
 
+export const setLoadedProductIdAction = (productId: string): types.UiSetLoadedProductIdAction => ({
+    type:    types.SET_LOADED_PRODUCT_ID,
+    payload: productId,
+});
+
+export const deleteLoadedProductIdAction = (productId: string): types.UiDeleteLoadedProductIdAction => ({
+    type:    types.DELETE_LOADED_PRODUCT_ID,
+    payload: productId,
+});
+
 export const resetAppToInnitialState = (): types.UiActionTypes => ({
     type: types.RESET_TO_INNITIAL_STATE,
 });

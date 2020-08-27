@@ -51,6 +51,7 @@ const MainPage: FC = () => {
 
         return acc;
     }, []);
+    // throw new Error();
 
     return (
         <S.MainContainer>

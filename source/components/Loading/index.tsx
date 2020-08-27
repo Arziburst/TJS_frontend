@@ -1,24 +1,26 @@
 // Core
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+// Elements
+import { Spinner } from '../../elements';
+
+// Styles
+import S from './styles';
 
 export const Loading = (props: any) => {
+    const { t } = useTranslation();
     const { error, timedOut, pastDelay, retry } = props;
 
-    if (error) {
+    if (error || timedOut || pastDelay) {
         return (
-            <div>
-                Error! <button onClick = { retry }>Retry</button>
-            </div>
+            <S.SpinnerContainer onClick = { retry }>
+                <Spinner
+                    absolute
+                    text = { t('App.fallbackSpinnerText') }
+                />
+            </S.SpinnerContainer>
         );
-    } else if (timedOut) {
-        return (
-            <div>
-                Taking a long time...
-                <button onClick = { retry }>Retry</button>
-            </div>
-        );
-    } else if (pastDelay) {
-        return <div>Loading...</div>;
     }
 
     return null;

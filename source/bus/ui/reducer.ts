@@ -7,6 +7,7 @@ const initialState = {
     type:             'All',
     isCartModalExist: false,
     viewedProducts:   [],
+    loadedProductIds: [],
 };
 
 export const uiReducer: Reducer<UiState, UiActionTypes> = (state = initialState, action) => {
@@ -33,6 +34,18 @@ export const uiReducer: Reducer<UiState, UiActionTypes> = (state = initialState,
             return {
                 ...state,
                 viewedProducts: action.payload,
+            };
+
+        case types.SET_LOADED_PRODUCT_ID:
+            return {
+                ...state,
+                loadedProductIds: [ ...state.loadedProductIds, action.payload ],
+            };
+
+        case types.DELETE_LOADED_PRODUCT_ID:
+            return {
+                ...state,
+                loadedProductIds: state.loadedProductIds.filter((productId) => productId !== action.payload),
             };
 
         default:

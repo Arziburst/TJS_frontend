@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { ProductsDeleteItemAsyncAction } from '../../types';
 
 // Actions
+import { deleteLoadedProductIdAction } from '../../../ui/actions';
 import { deleteProductSync } from '../../actions';
 
 // Api
@@ -24,6 +25,7 @@ export function* deleteProduct({ payload: product_id }: ProductsDeleteItemAsyncA
 
     if (_id) {
         yield put(deleteProductSync(_id));
+        yield put(deleteLoadedProductIdAction(_id));
         toast.success('Product deleted successfully!');
     }
 }
