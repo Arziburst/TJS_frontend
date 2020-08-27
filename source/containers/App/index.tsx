@@ -56,7 +56,7 @@ export const App: FC = () => {
                 isInitialized && (
                     <>
                         {
-                            isAllProductsLoaded && (
+                            !isAllProductsLoaded && (
                                 <S.SpinnerContainer>
                                     <Spinner
                                         absolute

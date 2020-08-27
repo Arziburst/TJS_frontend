@@ -77,10 +77,8 @@ export default {
 
     SpinnerContainer: styled.section`
         position: fixed;
-        top: 0px;
-        bottom: 0px;
-        right: 0px;
-        left: 0px;
+        height: 100vh;
+        width: 100vw;
         z-index: 2000;
         background-color: ${({ theme }) => theme.app};
     `,

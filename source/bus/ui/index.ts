@@ -46,8 +46,8 @@ export const useLoadedProducts = () => {
     const result = useProductsFindMany().every(({ _id }) => loadedProductIds.includes(_id));
 
     useEffect(() => {
-        isAllProductsLoaded !== result && void togglerCreatorAction('isAllProductsLoaded', result);
-    });
+        isAllProductsLoaded !== result && void dispatch(togglerCreatorAction('isAllProductsLoaded', result));
+    }, [ result ]);
 
 
     return {
