@@ -43,7 +43,9 @@ export const useLoadedProducts = () => {
     const dispatch = useDispatch();
     const loadedProductIds = useLoadedProductIds();
     const isAllProductsLoaded = useSelectorTogglers().isAllProductsLoaded;
-    const result = useProductsFindMany().every(({ _id }) => loadedProductIds.includes(_id));
+    const products = useProductsFindMany();
+    const result = products.length === loadedProductIds.length
+            && products.every(({ _id }) => loadedProductIds.includes(_id));
 
     useEffect(() => {
         isAllProductsLoaded !== result && void dispatch(togglerCreatorAction('isAllProductsLoaded', result));
