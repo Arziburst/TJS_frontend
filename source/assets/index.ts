@@ -9,6 +9,7 @@ import RobotoRegular from './fonts/Roboto-Regular.ttf';
 import logo from './images/logo.png';
 import fire from './images/fire.png';
 import master from './images/master.jpg';
+import fallback from './images/fallback.png';
 
 // // Fonts export
 export const fonts = {
@@ -21,4 +22,5 @@ export const images = {
     logo,
     fire,
     master,
+    fallback,
 };

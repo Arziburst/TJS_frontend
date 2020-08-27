@@ -1,6 +1,6 @@
 // Core
 import React, { useMemo, useEffect, FC } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -33,6 +33,7 @@ import G from '../../assets/globalStyles';
 
 export const App: FC = () => {
     const history = useHistory();
+    const { pathname } = useLocation();
     const { t } = useTranslation();
     const { isInitialized, isAuthenticated } = useInitialize();
     const [ isWelcomeComplete ] = useLocalStorage('isWelcomeComplete', false);
@@ -56,7 +57,7 @@ export const App: FC = () => {
                 isInitialized && (
                     <>
                         {
-                            !isAllProductsLoaded && (
+                            pathname === '/' && !isAllProductsLoaded && (
                                 <S.SpinnerContainer>
                                     <Spinner
                                         absolute

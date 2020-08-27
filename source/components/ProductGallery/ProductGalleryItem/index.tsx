@@ -1,5 +1,5 @@
 // Core
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 // Helpers
@@ -7,6 +7,9 @@ import { discountHandler } from '../../../helpers';
 
 // Styles
 import S from './styles';
+
+// Assets
+import { images } from '../../../assets';
 
 // Svg
 import { appSvg } from '../../../assets';
@@ -48,6 +51,7 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
 }) => {
     const { t } = useTranslation();
     const result = discountHandler(price, discount);
+    const [ isImageCorrupted, setImageAsCorrupted ] = useState(false);
 
     return (
         <S.ProductContainer onClick = { () => redirectHandler(_id) }>
@@ -118,10 +122,23 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
                 {discount > 0 && <span>{price} ₴</span>}
                 <p>{result} ₴</p>
             </S.Price>
-            <img
-                src = { previewImage }
-                onLoad = { () => void onLoad() }
-            />
+            {
+                isImageCorrupted
+                    ? (
+                        <img
+                            src = { images.fallback }
+                            onError = { () => void onLoad() }
+                            onLoad = { () => void onLoad() }
+                        />
+                    )
+                    : (
+                        <img
+                            src = { previewImage }
+                            onError = { () => void setImageAsCorrupted(true) }
+                            onLoad = { () => void onLoad() }
+                        />
+                    )
+            }
         </S.ProductContainer>
     );
 });
