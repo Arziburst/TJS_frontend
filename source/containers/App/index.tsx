@@ -20,7 +20,7 @@ import {
 
 // Hooks
 import { useInitialize } from '../../bus/profile';
-import { useCartModal, useLoadedProducts, useSelectorUi } from '../../bus/ui';
+import { useCartModal, useLoadedProducts } from '../../bus/ui';
 import { useOrdersFindMany } from '../../bus/orders';
 import { useLocalStorage } from '../../hooks';
 
