@@ -3,6 +3,9 @@
 import React, { memo, FC } from 'react';
 import { Link } from 'react-router-dom';
 
+// Elements
+import { Image } from '../../../elements';
+
 // Helpers
 import { discountHandler } from '../../../helpers';
 
@@ -28,7 +31,7 @@ export const CartItem: FC<PropTypes> = memo(({ images, price, discount, removeHa
     return (
         <S.CartItemContainer onClick = { closeCartModal }>
             <Link to = { `/product/${_id}` }>
-                <img src = { images[ 0 ] } />
+                <Image previewImage = { images[ 0 ] } />
             </Link>
             <S.Price>
                 {discount > 0 && <span>{price} ₴</span>}

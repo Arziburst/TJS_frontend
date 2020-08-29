@@ -16,6 +16,8 @@ import { useProductsFilter, useSelectorUi } from '../../bus/ui';
 import { useProductsFindMany } from '../../bus/products';
 import { useSelectorProfile } from '../../bus/profile';
 
+// Constants
+import { PRODUCTS_PAGE_SIZE } from '../../constants';
 
 // Styles
 import S from './styles';
@@ -27,7 +29,7 @@ type ReducedProducts = Array<ExtendedProduct & {
 
 const MainPage: FC = () => {
     const { t } = useTranslation();
-    const { productsFilterState, setProductsFilterState } = useProductsFilter();
+    const { productsFilterState: { pageNumber, productType }} = useProductsFilter();
     const isProductsFetching = useSelectorTogglers().isProductsFetching;
     const products = useProductsFindMany();
     const role = useSelectorProfile().role;
@@ -38,7 +40,7 @@ const MainPage: FC = () => {
         const isProductInCart = cart.includes(product._id);
         const isProductViewed = viewedProducts.includes(product._id);
 
-        if (productsFilterState === 'All' || productsFilterState === product.type) {
+        if (productType === 'All' || productType === product.type) {
             return [
                 ...acc,
                 {
@@ -50,8 +52,7 @@ const MainPage: FC = () => {
         }
 
         return acc;
-    }, []);
-    // throw new Error();
+    }, []).slice((pageNumber - 1) * PRODUCTS_PAGE_SIZE, pageNumber * PRODUCTS_PAGE_SIZE);
 
     return (
         <S.MainContainer>
@@ -77,10 +78,7 @@ const MainPage: FC = () => {
                     )
                 }
             </Switch>
-            <ProductNav
-                productsFilterState = { productsFilterState }
-                setProductsFilterState = { setProductsFilterState }
-            />
+            <ProductNav />
             {
                 !isProductsFetching && (
                     <ProductGallery

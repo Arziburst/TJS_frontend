@@ -2,6 +2,9 @@
 import React, { memo, FC } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 
+// Elements
+import { Image } from '../../elements';
+
 // Styles
 import S from './styles';
 
@@ -27,9 +30,9 @@ export const ProductCarausel: FC<PropTypes> = memo(({ images }) => {
                 transitionTime = { 800 }>
                 {
                     images.map((url, index) => (
-                        <img
-                            key = { `${index}-ProductCarausel` }
-                            src = { url }
+                        <Image
+                            key = { index }
+                            previewImage = { url }
                         />
                     ))
                 }

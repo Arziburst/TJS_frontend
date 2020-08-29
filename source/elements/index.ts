@@ -4,4 +4,6 @@ export * from './Select';
 export * from './Textarea';
 export * from './ModalHeader';
 export * from './Spinner';
+export * from './FilterButton';
+export * from './Image';
 

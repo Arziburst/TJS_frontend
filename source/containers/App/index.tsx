@@ -20,7 +20,7 @@ import {
 
 // Hooks
 import { useInitialize } from '../../bus/profile';
-import { useCartModal, useLoadedProducts } from '../../bus/ui';
+import { useCartModal, useLoadedProducts, useSelectorUi } from '../../bus/ui';
 import { useOrdersFindMany } from '../../bus/orders';
 import { useLocalStorage } from '../../hooks';
 
@@ -37,8 +37,8 @@ export const App: FC = () => {
     const { t } = useTranslation();
     const { isInitialized, isAuthenticated } = useInitialize();
     const [ isWelcomeComplete ] = useLocalStorage('isWelcomeComplete', false);
-    const { isAllProductsLoaded } = useLoadedProducts();
-    const [ themeName, setThemeName ] = useLocalStorage<ThemesKeys>('theme', 'darkTheme');
+    const { isAllProductsLoaded, isFirstLoading } = useLoadedProducts();
+    const [ themeName, setThemeName ] = useLocalStorage<ThemesKeys>('theme', 'lightTheme');
 
     const { isCartModalExist } = useCartModal();
     const ordersLength = useOrdersFindMany().length;
@@ -61,7 +61,7 @@ export const App: FC = () => {
                                 <S.SpinnerContainer>
                                     <Spinner
                                         absolute
-                                        text = { t('App.spinnerText') }
+                                        text = { isFirstLoading ? t('App.spinnerText') : void 0 }
                                         timeout = { 0 }
                                     />
                                 </S.SpinnerContainer>

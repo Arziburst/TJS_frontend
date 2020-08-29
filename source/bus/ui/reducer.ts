@@ -4,7 +4,8 @@ import { UiState, UiActionTypes } from './types';
 import * as types from './types';
 
 const initialState = {
-    type:             'All',
+    productType:      'All',
+    pageNumber:       1,
     isCartModalExist: false,
     viewedProducts:   [],
     loadedProductIds: [],
@@ -12,10 +13,16 @@ const initialState = {
 
 export const uiReducer: Reducer<UiState, UiActionTypes> = (state = initialState, action) => {
     switch (action.type) {
-        case types.SET_PRODUCTS_FILTER_STATE:
+        case types.SET_PRODUCTS_TYPE_FILTER:
             return {
                 ...state,
-                type: action.payload,
+                productType: action.payload,
+            };
+
+        case types.SET_PRODUCTS_PAGE_NUMBER_FILTER:
+            return {
+                ...state,
+                pageNumber: action.payload,
             };
 
         case types.SET_CART_MODAL_STATE:

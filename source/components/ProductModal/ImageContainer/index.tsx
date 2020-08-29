@@ -1,6 +1,9 @@
 // Core
 import React, { FC } from 'react';
 
+// Elements
+import { Image } from '../../../elements';
+
 // Styles
 import S from './styles';
 
@@ -21,7 +24,7 @@ export const ImageContainer: FC<PropTypes> = ({
     deleteHandler,
 }) => (
     <S.ImageContainer onClick = { () => setImageForm(imageUrl) }>
-        <img src = { imageUrl } />
+        <Image previewImage = { imageUrl } />
         <h2>
             <S.Circle isActive = { isActive }>
                 {elementsSvg.CircleIcon()}

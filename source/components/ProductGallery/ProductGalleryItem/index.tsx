@@ -1,18 +1,18 @@
 // Core
-import React, { memo, FC, useState } from 'react';
+import React, { memo, FC } from 'react';
 import { useTranslation } from 'react-i18next';
+
+// Elements
+import { Image } from '../../../elements';
 
 // Helpers
 import { discountHandler } from '../../../helpers';
 
-// Styles
-import S from './styles';
-
-// Assets
-import { images } from '../../../assets';
-
 // Svg
 import { appSvg } from '../../../assets';
+
+// Styles
+import S from './styles';
 
 type PropTypes = {
     _id: string,
@@ -51,22 +51,14 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
 }) => {
     const { t } = useTranslation();
     const result = discountHandler(price, discount);
-    const [ isImageCorrupted, setImageAsCorrupted ] = useState(false);
 
     return (
-        <S.ProductContainer onClick = { () => redirectHandler(_id) }>
+        <S.ProductContainer onClick = { () => {
+            redirectHandler(_id);
+            window.scrollTo({ top: 0 });
+        } }>
             <S.Hover>
                 <h1>{t('ProductGalleryItem.tapToOpen')}</h1>
-                {
-                    role === 'admin' && (
-                        <S.EditButton onClick = { (event) => {
-                            stopPropagation(event);
-                            editProductRedirectHandler(_id);
-                        } }>
-                            {appSvg.editProductIcon()}
-                        </S.EditButton>
-                    )
-                }
                 {
                     !isProductInCart && (
                         <S.AddToCartButton onClick = { (event) => {
@@ -86,6 +78,16 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
                     )
                 }
             </S.Hover>
+            {
+                role === 'admin' && (
+                    <S.EditButton onClick = { (event) => {
+                        stopPropagation(event);
+                        editProductRedirectHandler(_id);
+                    } }>
+                        {appSvg.editProductIcon()}
+                    </S.EditButton>
+                )
+            }
             {
                 isProductNew && (
                     <S.New>
@@ -122,23 +124,10 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
                 {discount > 0 && <span>{price} ₴</span>}
                 <p>{result} ₴</p>
             </S.Price>
-            {
-                isImageCorrupted
-                    ? (
-                        <img
-                            src = { images.fallback }
-                            onError = { () => void onLoad() }
-                            onLoad = { () => void onLoad() }
-                        />
-                    )
-                    : (
-                        <img
-                            src = { previewImage }
-                            onError = { () => void setImageAsCorrupted(true) }
-                            onLoad = { () => void onLoad() }
-                        />
-                    )
-            }
+            <Image
+                previewImage = { previewImage }
+                onComplete = { onLoad }
+            />
         </S.ProductContainer>
     );
 });

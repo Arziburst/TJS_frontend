@@ -1,9 +1,14 @@
 // Instruments
 import * as types from './types';
 
-export const setProductsFilterState = (type: string): types.UiSetProductsFilterStateAction => ({
-    type:    types.SET_PRODUCTS_FILTER_STATE,
-    payload: type,
+export const setProductsTypeFilter = (productType: string): types.UiSetProductsTypeFilterAction => ({
+    type:    types.SET_PRODUCTS_TYPE_FILTER,
+    payload: productType,
+});
+
+export const setProductsPageNumberFilterAction = (pageNumber: number): types.UiSetProductsPageNumberFilterAction => ({
+    type:    types.SET_PRODUCTS_PAGE_NUMBER_FILTER,
+    payload: pageNumber,
 });
 
 export const setCartModalState = (state: boolean): types.UiSetCartModalStateAction => ({

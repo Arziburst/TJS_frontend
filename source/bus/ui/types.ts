@@ -1,14 +1,21 @@
 export type UiState = {
-    type: string,
+    productType: string,
+    pageNumber: number,
     isCartModalExist: boolean,
     viewedProducts: Array<string>,
     loadedProductIds: Array<string>,
 };
 
-export const SET_PRODUCTS_FILTER_STATE = 'SET_PRODUCTS_FILTER_STATE';
-export type UiSetProductsFilterStateAction = {
-    type: typeof SET_PRODUCTS_FILTER_STATE;
+export const SET_PRODUCTS_TYPE_FILTER = 'SET_PRODUCTS_TYPE_FILTER';
+export type UiSetProductsTypeFilterAction = {
+    type: typeof SET_PRODUCTS_TYPE_FILTER;
     payload: string;
+};
+
+export const SET_PRODUCTS_PAGE_NUMBER_FILTER = 'SET_PRODUCTS_PAGE_NUMBER_FILTER';
+export type UiSetProductsPageNumberFilterAction = {
+    type: typeof SET_PRODUCTS_PAGE_NUMBER_FILTER;
+    payload: number;
 };
 
 export const SET_CART_MODAL_STATE = 'SET_CART_MODAL_STATE';
@@ -47,7 +54,8 @@ export type ResetToInitialStateAction = {
 };
 
 export type UiActionTypes =
-    | UiSetProductsFilterStateAction
+    | UiSetProductsTypeFilterAction
+    | UiSetProductsPageNumberFilterAction
     | UiSetCartModalStateAction
     | UiSetViewedProductsStateAction
     | UiSetInitialViewedProductsStateAction

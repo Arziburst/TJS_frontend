@@ -1,50 +1,36 @@
 import styled from 'styled-components';
 
-export default {
-    ProductNavContainer: styled.nav`
-        display: flex;
-    `,
+export const Container =  styled.nav`
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+    position: sticky;
+    top: 0;
+    background-color: ${({ theme }) => theme.app};
+    z-index: 2;
+    margin-bottom: 5px;
 
-    ProductTypeButton: styled.button<{ isActive: boolean }>`
-        ${({ theme }) => theme.button};
-        cursor: pointer;
-        position: relative;
-        padding: 0px 10px;
-        margin-bottom: 5px;
-        font-family: PacificoRegular;
-        font-size: 24px;
+    @media (max-width: 600px) {
+        border-radius: 0px; 
 
-        margin-right: 2px;
-
-        &:first-child {
-            border-top-left-radius: 12px;
-            border-bottom-left-radius: 12px;
-        }
-
-        &:last-child {
-            margin-right: 0px;
-            border: none;
-            border-top-right-radius: 12px;
-            border-bottom-right-radius: 12px;
-        }
-
-        ${({ isActive }) => isActive && { transform: 'scale(0.9)' }};
-
-        @media (max-width: 1470px) {
-            font-size: 22px;
-        }
-
-        @media (max-width: 500px) {
-            margin-right: 1px;
-            padding: 0px 5px;
+        button {
             font-size: 18px;
         }
+    }
+`;
 
-        @media (max-width: 350px) {
-            padding: 0px 5px;
-            font-size: 16px;
-        }
+export const TypesContainer = styled.div`
+    width: 100%;
+    display: grid;
+    margin-bottom: 2px;
+    grid-template-columns: 12% 22% 22% 22% 22%;
+`;
 
-        transition: transform 0.3s;
-    `,
-};
+export const PaginationContainer = styled.div`
+    width: 100%;
+    display: grid;
+    grid-template-columns: 34% 32% 34%;
+`;

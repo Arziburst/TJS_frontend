@@ -1,4 +1,5 @@
 export const productTypes = [ 'All', 'Brooch', 'Earrings', 'Bracelets', 'Necklace' ];
+export const PRODUCTS_PAGE_SIZE = 20;
 export const PINK = '#eb5b78';
 export const RED = '#E74F4E';
 export const WHITE = '#ffffff';

@@ -1,24 +1,26 @@
 export const ProductNav = {
     en: {
         translation: {
-            ProductNav: [
+            FilterTypes: [
                 [ 'All', 'All' ],
                 [ 'Brooch', 'Brooch' ],
                 [ 'Earrings', 'Earrings' ],
                 [ 'Bracelets', 'Bracelets' ],
                 [ 'Necklace', 'Necklace' ],
             ],
+            FilterReset: 'Reset',
         },
     },
     ru: {
         translation: {
-            ProductNav: [
+            FilterTypes: [
                 [ 'All', 'Все' ],
                 [ 'Brooch', 'Брошь' ],
                 [ 'Earrings', 'Серьги' ],
                 [ 'Bracelets', 'Браслеты' ],
                 [ 'Necklace', 'Ожерелье' ],
             ],
+            FilterReset: 'Сброс',
         },
     },
 };
