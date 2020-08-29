@@ -43,7 +43,7 @@ export const useProductsFilter = () => {
         }
 
         dispatch(setProductsPageNumberFilterAction(newProductPage));
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0 });
     };
 
     return {
@@ -55,7 +55,7 @@ export const useProductsFilter = () => {
         setProductsTypeFilter: (newProductType: string) => {
             if (productType !== newProductType) {
                 dispatch(setProductsTypeFilter(newProductType));
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({ top: 0 });
                 pageNumber !== 1 && void setProductsPageNumberFilter(1);
             }
         },
@@ -82,8 +82,7 @@ export const useLoadedProducts = () => {
         .map(({ _id }) => _id);
 
     const alreadyLoadedVisibleProductIds = _.intersection(visibleProductIds, loadedProductIds);
-    const productsLoadingState = visibleProductIds.length === alreadyLoadedVisibleProductIds.length
-        && visibleProductIds.every((_id) => loadedProductIds.includes(_id));
+    const productsLoadingState = visibleProductIds.length === alreadyLoadedVisibleProductIds.length;
 
     useEffect(() => {
         if (isAllProductsLoaded !== productsLoadingState) {
