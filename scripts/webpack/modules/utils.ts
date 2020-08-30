@@ -84,9 +84,8 @@ export const generateServiceWorker = (): Configuration => {
 
 export const generateManifest = (): Configuration => {
     const manifest = new WebpackPwaManifest({
-        name:             'Cinemator',
-        short_name:       'Cinemator',
-        description:      'Cinema production crm system',
+        name:             process.env.APP_NAME || 'Awesome app',
+        short_name:       process.env.APP_NAME || 'Awesome app',
         background_color: '#ffffff',
         crossorigin:      'use-credentials',
         display:          'standalone',
