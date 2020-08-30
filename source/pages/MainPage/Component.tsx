@@ -3,11 +3,11 @@ import React, { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-// Types
-import { ExtendedProduct } from '../../bus/products/types';
-
 // Components
 import { ProductNav, ProductGallery, ProductModal, RegistrationModal } from '../../components';
+
+// Elements
+import { Button } from '../../elements';
 
 // Hooks
 import { useSelectorCart } from '../../bus/cart';
@@ -22,6 +22,9 @@ import { PRODUCTS_PAGE_SIZE } from '../../constants';
 // Styles
 import S from './styles';
 
+// Types
+import { ExtendedProduct } from '../../bus/products/types';
+
 type ReducedProducts = Array<ExtendedProduct & {
     isProductInCart: boolean;
     isProductViewed: boolean
@@ -29,7 +32,10 @@ type ReducedProducts = Array<ExtendedProduct & {
 
 const MainPage: FC = () => {
     const { t } = useTranslation();
-    const { productsFilterState: { pageNumber, productType }} = useProductsFilter();
+    const {
+        productsFilterState: { pageNumber, pagesCount, productType },
+        setProductsPageNumberFilter,
+    } = useProductsFilter();
     const isProductsFetching = useSelectorTogglers().isProductsFetching;
     const products = useProductsFindMany();
     const role = useSelectorProfile().role;
@@ -85,6 +91,15 @@ const MainPage: FC = () => {
                         products = { reducedProductsHandler }
                         role = { role }
                     />
+                )
+            }
+            {
+                pageNumber !== pagesCount && (
+                    <Button
+                        styles = {{ marginTop: 5 }}
+                        onClick = { () => void setProductsPageNumberFilter(pageNumber + 1) }>
+                        {t('MainPage.nextPage')}
+                    </Button>
                 )
             }
         </S.MainContainer>

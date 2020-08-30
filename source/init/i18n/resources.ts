@@ -5,6 +5,7 @@ import merge from 'lodash.merge';
 import { App } from '../../containers/App/locale';
 
 // Pages Locales
+import { MainPage } from '../../pages/MainPage/locale';
 import { ProductPage } from '../../pages/ProductPage/locale';
 import { OrdersPage } from '../../pages/OrdersPage/locale';
 import { AboutUsPage } from '../../pages/AboutUsPage/locale';
@@ -26,6 +27,7 @@ export const resources = merge(
     // Root
     App,
     // Pages Locales
+    MainPage,
     ProductPage,
     OrdersPage,
     AboutUsPage,
