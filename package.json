@@ -107,7 +107,7 @@
         "react-dev-utils": "7.0.3",
         "react-hot-loader": "4.6.5",
         "redux-devtools-extension": "^2.13.8",
-        "serve": "10.1.1",
+        "serve": "10.1.2",
         "source-map-loader": "^0.2.4",
         "style-loader": "0.23.1",
         "ts-loader": "^6.2.1",
