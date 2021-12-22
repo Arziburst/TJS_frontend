@@ -58,7 +58,9 @@ const MainPage: FC = () => {
         }
 
         return acc;
-    }, []).slice((pageNumber - 1) * PRODUCTS_PAGE_SIZE, pageNumber * PRODUCTS_PAGE_SIZE);
+    }, [])
+        .sort((x, y) => (x.available === y.available) ? 0 : x.available ? -1 : 1) // eslint-disable-line no-nested-ternary
+        .slice((pageNumber - 1) * PRODUCTS_PAGE_SIZE, pageNumber * PRODUCTS_PAGE_SIZE);
 
     return (
         <S.MainContainer>

@@ -178,6 +178,30 @@ export default {
         }
     `,
 
+    Available: styled.div`
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 3px 5px 5px 5px;
+        right: 5px;
+        bottom: 35px;
+        background-color: ${({ theme }) => theme.themeName === 'lightTheme' ? WHITE : DEEP_GRAY};
+        border-radius: 10px;
+
+        p {
+            font-size: 14px;
+            color: ${({ theme }) => theme.themeName === 'lightTheme' ? DEEP_GRAY : WHITE};
+            font-family: PacificoRegular;
+        }
+
+        @media (max-width: 420px) {
+            span, p {
+                font-size: 20px;
+            }
+        }
+    `,
+
     Views: styled.div<{ isProductViewed: boolean }>`
         position: absolute;
         display: flex;

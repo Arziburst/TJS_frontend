@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // Constants
 import { GRAY, GREEN, PINK, WHITE, DEEP_GRAY } from '../constants';
 
-export const styledContainer = styled.div<{ isValid: boolean }>`
+export const styledContainer = styled.div<{ isValid?: boolean }>` // ? для Tottger
     position: relative;
     width: 100%;
     box-sizing: border-box;

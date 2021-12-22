@@ -13,7 +13,7 @@ import { ImageContainer } from './ImageContainer';
 import { GalleryPopup } from './GalleryPopup';
 
 // Elements
-import { Button, Input, ModalHeader, Select, Textarea } from '../../elements';
+import { Button, Input, ModalHeader, Select, Textarea, Toggler } from '../../elements';
 
 // Styles
 import S from './styles';
@@ -43,7 +43,12 @@ export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
     const { _id: _idFromUrl } = useParams<{ _id: string }>();
     const { createNewProductAsync, editProductAsync, deleteProductAsync, toggler } = useProductsActions();
     const [ galleryPopupState, setGalleryPopupState ] = useState<boolean>(false);
-    const [ form, setForm, setNewInnitialValuesForm ] = useForm<FormTypes>(formInnitialState);
+    const [
+        form,
+        setForm,
+        setNewInnitialValuesForm,
+        handleChangeCustomField,
+    ] = useForm<FormTypes>(formInnitialState);
     // TODO
     const [ imageForm, setImageForm, setInnitialValuesImageForm ] = useImagesForm([]);
 
@@ -168,6 +173,15 @@ export const ProductModal: FC<PropTypes> = ({ headerTitle }) => {
                     title = { t('ProductModal.discountInput.title') }
                     type = 'number'
                     value = { form.discount }
+                />
+                <Toggler
+                    disabled = { toggler }
+                    handler = { () => handleChangeCustomField('available', !form.available) }
+                    i18nObj = {{
+                        true:  t('ProductModal.toggerInput.true'),
+                        false: t('ProductModal.toggerInput.false'),
+                    }}
+                    value = { form.available }
                 />
                 <S.ProductImages>
                     {

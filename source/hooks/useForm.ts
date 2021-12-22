@@ -2,8 +2,10 @@ import { ChangeEvent } from 'react';
 import { useState } from 'react';
 
 type OnChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>) => void
+type OnChangeCustomField = (key: string, value: any) => void
+type IStatusForm = (initialValue: number) => [number, OnChange, Function]
 
-export const useForm = <T>(initialValues: T): [T, OnChange, Function ] => {
+export const useForm = <T>(initialValues: T): [T, OnChange, Function, OnChangeCustomField ] => {
     const [ form, setForm ] = useState<T>(initialValues);
 
     const handleChange: OnChange = (event) => {
@@ -14,12 +16,19 @@ export const useForm = <T>(initialValues: T): [T, OnChange, Function ] => {
         }));
     };
 
+    const handleChangeCustomField: OnChangeCustomField = (key, value) => {
+        setForm((prevValues) => ({
+            ...prevValues,
+            [ key ]: value,
+        }));
+    };
+
     const setNewInnitialValues = (newInnitialValues: T): void => void setForm(newInnitialValues);
 
-    return [ form, handleChange, setNewInnitialValues ];
+    return [ form, handleChange, setNewInnitialValues, handleChangeCustomField ];
 };
 
-export const useStatusForm = (initialValue: number): [number, OnChange, Function ] => {
+export const useStatusForm: IStatusForm = (initialValue) => {
     const [ form, setForm ] = useState<number>(initialValue);
 
     const handleChange: OnChange = (event) => {

@@ -28,6 +28,7 @@ export const ProductModal = merge(
                             [ 'Earrings', 'Earrings' ],
                             [ 'Bracelets', 'Bracelets' ],
                             [ 'Necklace', 'Necklace' ],
+                            [ 'Rings', 'Rings' ],
                         ],
                     },
                     weightInput: {
@@ -41,6 +42,10 @@ export const ProductModal = merge(
                     discountInput: {
                         title: 'Enter discount %:',
                         hint:  'The number that indicates the percentage discount, from 0% to 50%.Example: 25.',
+                    },
+                    toggerInput: {
+                        true:  'Availability',
+                        false: 'Non-availability',
                     },
                     imageForm: 'Image',
                     addImages: 'Add images from Gallery',
@@ -72,6 +77,7 @@ export const ProductModal = merge(
                             [ 'Earrings', 'Серьги' ],
                             [ 'Bracelets', 'Браслет' ],
                             [ 'Necklace', 'Ожерелье' ],
+                            [ 'Rings', 'Кольца' ],
                         ],
                     },
                     weightInput: {
@@ -85,6 +91,10 @@ export const ProductModal = merge(
                     discountInput: {
                         title: 'Введите скидку %:',
                         hint:  'Число которое указывает скидку в процентах, от 0% до 50%. Пример: 25.',
+                    },
+                    toggerInput: {
+                        true:  'В наличии',
+                        false: 'Нет в наличии',
                     },
                     imageForm: 'Изображение',
                     addImages: 'Добавить изображения из Галереи',

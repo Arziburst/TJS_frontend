@@ -19,6 +19,7 @@ type PropTypes = {
     previewImage: string,
     redirectHandler: Function,
     role: string,
+    available: boolean,
     editProductRedirectHandler: Function,
     stopPropagation: Function,
     addToCart: Function,
@@ -48,6 +49,7 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
     discount = 0,
     isProductNew = false,
     onLoad,
+    available = true,
 }) => {
     const { t } = useTranslation();
     const result = discountHandler(price, discount);
@@ -124,6 +126,13 @@ export const ProductGalleryItem: FC<PropTypes> = memo(({
                 {discount > 0 && <span>{price} ₴</span>}
                 <p>{result} ₴</p>
             </S.Price>
+            {
+                !available && (
+                    <S.Available>
+                        <p>{t('ProductGalleryItem.available')}</p>
+                    </S.Available>
+                )
+            }
             <Image
                 previewImage = { previewImage }
                 onComplete = { onLoad }

@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 import { toast } from 'react-toastify';
 
 // Types
-import { RegistrationAsyncAction } from '../../types';
+import { ProfileState, RegistrationAsyncAction } from '../../types';
 
 // Actions
 import { fillProfile } from '../../actions';
@@ -17,7 +17,7 @@ import { registration } from '../../../../api';
 import { makeRequest } from '../../../../helpers';
 
 export function* callRegistrationWorker({ payload: body }: RegistrationAsyncAction) {
-    const result = yield makeRequest({
+    const result: ProfileState | undefined = yield makeRequest<ProfileState>({
         fetcher:     registration(body),
         togglerType: 'isProfileFetching',
         fill:        fillProfile,

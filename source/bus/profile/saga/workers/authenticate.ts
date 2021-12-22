@@ -16,7 +16,7 @@ import { authenticateRequest } from '../../../../api';
 import { makeRequest } from '../../../../helpers';
 
 export function* callAuthenticateWorker () {
-    const result = yield makeRequest<ProfileState>({
+    const result: ProfileState | undefined = yield makeRequest<ProfileState>({
         fetcher:           authenticateRequest,
         togglerType:       'isProfileFetching',
         fill:              fillProfile,
