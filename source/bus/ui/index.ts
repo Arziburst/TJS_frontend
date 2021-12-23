@@ -78,6 +78,7 @@ export const useLoadedProducts = () => {
     const { loadedProductIds, productType, pageNumber } = useSelectorUi();
     const visibleProductIds = useProductsFindMany()
         .filter((product) => productType === 'All' || product.type === productType)
+        .sort((x, y) => (x.available === y.available) ? 0 : x.available ? -1 : 1) // eslint-disable-line no-nested-ternary
         .slice((pageNumber - 1) * PRODUCTS_PAGE_SIZE, pageNumber * PRODUCTS_PAGE_SIZE)
         .map(({ _id }) => _id);
 
